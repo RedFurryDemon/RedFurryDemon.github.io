@@ -57,3 +57,21 @@ ul, #tree {
 .clade > .species {
   margin-left: 3em;
 }
+
+@media only screen and (max-width: 1200px) {
+  .clade > div {
+    padding-left: 1.7em;
+  }
+  .clade > .species {
+    margin-left: 1.7em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .clade > div {
+    padding-left: 1em;
+  }
+  .clade > .species {
+    margin-left: 1em;
+  }
+}
