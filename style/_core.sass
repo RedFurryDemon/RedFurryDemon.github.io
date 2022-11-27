@@ -1,0 +1,61 @@
+@font-face
+	font-family: solidMono
+	src: url("../assets/Solid-Mono.ttf")
+//RFD, remember to check this for compatibility
+//https://stackoverflow.com/questions/7961721/how-do-i-install-a-custom-font-on-an-html-site
+
+$f_txt: solidMono, monospace
+$f_button: solidMono, monospace //also Exo 2 Light is great
+//$f_maintitle: cinzel
+//$f_maintitle: "Solid Mono", monospace
+//$f_fancy_1: whisper
+
+$f_size_txt: 100%
+$f_size_button: 100%
+
+$c_bg_main: hsl(0, 0%, 8%)
+//various opacity of pure black
+$c_bg_03a: rgba(0,0,0,0.3)
+$c_bg_04a: rgba(0,0,0,0.4)
+$c_bg_05a: rgba(0,0,0,0.5)
+//green bg
+$c_bg_highlight: hsla(157, 100%, 39%, 0.2)
+$c_bg_highlight01a: hsla(157, 100%, 39%, 0.1)
+
+$c_hr1: #c2c2c2
+$c_hr2: hsla(0, 0%, 76%, 0.0)
+
+$c_txt: #c2c2c2 //hsl(0, 0%, 76%)
+$c_button: #c2c2c2 //hsl(0, 0%, 76%)
+$c_txt_darker1: #999999 //hsl(0, 0%, 60%)
+
+$c_highlight_main: #00c77b //hsl(157, 100%, 39%)
+$c_highlight_bright: #d3d3d3
+$c_highlight_white: #fff
+
+@mixin flex_full
+	display: flex
+	flex-wrap: nowrap
+	align-items: stretch
+	justify-content: space-between
+
+//thing 1
+//thing 2
+//thing 3
+@mixin flex_v_full
+	@include flex_full
+	flex-direction: column
+	min-height: 100%
+
+//thing 1		thing 2		thing 3
+@mixin flex_h_full
+	@include flex_full
+	flex-direction: row
+	min-width: 100%
+
+//header_id, content_id, footer_id
+@mixin body_child
+	margin: 0px
+	flex-grow: 0
+	width: 100%
+	box-sizing: border-box

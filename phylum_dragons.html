@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style/style__main.css">
+	<link rel="stylesheet" type="text/css" href="style/style_headerAndFooter.css">
+	<link rel="stylesheet" type="text/css" href="style/style_phylum.css">
+
+	<script src="scripts/__shared.js" defer></script>
+
+	<title>RFD's Scratchpad</title>
+</head>
+
+<body onload="onPageLoad()">
+
+	<div id="header_id"></div>
+<div id="scrollButton_id"></div>
+
+	<div id="content_id">
+		<div class="textbg">
+			<p>Species are highlighted in green and identified by name, description, or design number.</p>
+			<p>revised 27 Nov 2022</p>
+			<div id="tree" class="clade">
+				<p class="clade_name">[DIVISIO] draconids</p>
+				<p class="clade_desc">quadrupedal, heavily-plated terrestrial reptiles</p>
+				<div class="clade">
+					<p class="clade_name">[ORDO] ?</p>
+					<p class="clade_desc">wyrms and wyverns</p>
+					<div class="clade">
+						<p class="clade_name">[SUBORDO] wyrms (S)</p>
+						<p class="clade_desc">"great serpents"; solitary, legless, carnivorous reptiles</p>
+						<div class="clade">
+							<p class="clade_name">[FAMILIA] ?</p>
+							<p class="clade_desc">arboreal clade</p>
+							<p class="species">003-03</p>
+						</div>
+						<div class="clade">
+							<p class="clade_name">?</p>
+							<p class="clade_desc">aquatic clade</p>
+							<div class="clade">
+								<p class="clade_name">[FAMILIA] leviathans</p>
+								<p class="clade_desc">fully aquatic group</p>
+								<p class="species">001-02</p>
+							</div>
+							<div class="clade">
+								<p class="clade_name">[FAMILIA] ?</p>
+								<p class="clade_desc">semi-aquatic group</p>
+								<p class="species">002-02</p>
+							</div>
+						</div>
+					</div>
+					<div class="clade">
+						<p class="clade_name">[SUBORDO] wyverns (W)</p>
+						<p class="clade_desc">small-to-medium flying animals with membranous wings</p>
+						<div class="clade">
+							<p class="clade_name">?</p>
+							<p class="clade_desc">?</p>
+							<div class="clade">
+								<p class="clade_name">[FAMILIA] ?</p>
+								<p class="clade_desc">sight-oriented diurnal medium-to large carnivores; feed mainly on fish</p>
+							</div>
+							<div class="clade">
+								<p class="clade_name">[FAMILIA] ?</p>
+								<p class="clade_desc">diurnal small-to-medium carnivores</p>
+							</div>
+						</div>
+						<div class="clade">
+							<p class="clade_name">[FAMILIA] ?</p>
+							<p class="clade_desc">small insectivores, relatively good at flying</p>
+							<p class="species">002-03</p>
+						</div>
+					</div>
+				</div>
+				<div class="clade">
+					<p class="clade_name">[ORDO] drakes (D)</p>
+					<p class="clade_desc">quadrupedal reptiles with legs straight under the body</p>
+					<div class="clade">
+						<p class="clade_name">?</p>
+						<p class="clade_desc">heavily-plated, bulky herbivores</p>
+						<p class="species">002-01</p>
+					</div>
+					<div class="clade">
+						<p class="clade_name">?</p>
+						<p class="clade_desc">heavily-plated herbivores with an elongated body</p>
+						<div class="clade">
+							<p class="clade_name">lindwurms</p>
+							<p class="clade_desc">endothermic drakes covered in single-strain feathers</p>
+							<div class="clade">
+	<p class="clade_name">deer</p>
+	<p class="clade_desc">quadrupedal, lightly built drakes with long legs and varying signle-strain cover</p>
+</div>
+							<div class="clade">
+								<p class="clade_name">dravirs</p>
+								<p class="clade_desc">bipedal reptiles covered in compound feathers; predatory species - insectivores etc.</p>
+								<p class="species">kobold</p>
+								<p class="species">001-01</p>
+								<p class="species">003-01</p>
+								<div class="clade">
+									<p class="clade_name">[FAMILIA] definitely not cassowaries</p>
+									<p class="clade_desc">dravirs with reduced tail</p>
+								</div>
+								<div class="clade">
+									<p class="clade_name">birds</p>
+									<p class="clade_desc">feathered reptiles capable of active flight</p>
+								</div>
+								<div class="clade">
+									<p class="clade_name">[FAMILIA] griffins</p>
+									<p class="clade_desc">quadrupedal, feathered reptiles</p>
+									<p class="species">Zir'han's species</p>
+									<p class="species">001-03</p>
+									<p class="species">my new dragon designed by vox populi</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer_id"></div>
+
+<script>
+
+		//this may vary from file to file, so no externalization
+		function onPageLoad() {
+			displayHeader("phylogenetic tree of RFD's draconids");
+			displayScrollButton();
+			displayFooter();
+		}
+
+	</script>
+
+</body>
+
+</html>

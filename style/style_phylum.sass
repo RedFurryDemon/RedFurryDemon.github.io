@@ -1,0 +1,54 @@
+@import _core
+
+ul, #tree
+	list-style-type: none
+
+#tree
+	margin: 0
+	padding: 0
+
+.clade_name
+	color: $c_highlight_bright
+	//cursor: pointer
+	font-weight: bold
+	margin: 0px
+
+.clade_name_hidden
+	color: $c_txt_darker1
+
+.clade_desc
+	color: $c_txt
+	background-color: $c_bg_04a
+	border:
+		left: 1px solid  $c_txt
+	padding: 0.7em 1em
+	margin:
+		top: 0.2em
+		bottom: 1em
+		left: 0em
+		right: 0em
+
+.clade_desc_hidden
+	color: $c_txt_darker1
+	background-color: $c_bg_03a
+	border:
+		left: 1px solid $c_txt_darker1
+	font:
+		style: italic
+
+.species
+	background-color: $c_bg_04a
+	color: $c_highlight_main
+	padding: 0.7em 1.5em
+	//margin: 0.2em 0em
+
+.hidden
+	display: none
+
+.clade > div
+	padding:
+		left: 3em
+
+.clade > .species
+	margin:
+		left: 3em

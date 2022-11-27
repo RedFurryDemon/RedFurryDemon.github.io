@@ -1,0 +1,59 @@
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+ul, #tree {
+  list-style-type: none;
+}
+
+#tree {
+  margin: 0;
+  padding: 0;
+}
+
+.clade_name {
+  color: #d3d3d3;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.clade_name_hidden {
+  color: #999999;
+}
+
+.clade_desc {
+  color: #c2c2c2;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-left: 1px solid #c2c2c2;
+  padding: 0.7em 1em;
+  margin-top: 0.2em;
+  margin-bottom: 1em;
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
+.clade_desc_hidden {
+  color: #999999;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-left: 1px solid #999999;
+  font-style: italic;
+}
+
+.species {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #00c77b;
+  padding: 0.7em 1.5em;
+}
+
+.hidden {
+  display: none;
+}
+
+.clade > div {
+  padding-left: 3em;
+}
+
+.clade > .species {
+  margin-left: 3em;
+}

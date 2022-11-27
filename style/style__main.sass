@@ -1,0 +1,153 @@
+@import _core
+
+a
+	text-decoration: none
+	color: $c_highlight_main
+	font:
+		weight: bold
+	transition-duration: 0.15s
+	&:hover
+		color: $c_highlight_white
+		text-shadow: 0px 0px 5px $c_highlight_main
+	&:active
+		color: $c_highlight_white
+		text-shadow: 0px 0px 5px $c_highlight_white
+
+button
+	//@include link_glow
+	//remove default formatting
+	background: none
+	border: none
+	outline: none
+	//and add my own
+	color: $c_button
+	font-family: $f_button
+	font-size: $f_size_button
+	padding: 10px 10px
+	display: inline-block
+	cursor: default
+
+::selection, ::-moz-selection
+	color: $c_highlight_white
+	text-shadow: 0px 0px 10px $c_highlight_main, 0px 0px 5px $c_highlight_main
+
+
+hr
+	border: none
+	height: 1px
+	background-image: linear-gradient(to right, $c_hr2, $c_hr1, $c_hr2)
+
+main
+	@include flex_h_full
+	font-family: $f_txt
+	background-color: $c_bg_05a
+	backdrop-filter: blur(8px)
+
+#content_id
+	@include body_child
+	flex-grow: 1 //stretch main content vertically, so body fills 100% height
+
+.textbg
+	margin: 0em auto
+	width: 70%
+	height: 100%
+	padding: 2em
+	//RFD - uncomment in case I wanted to use a background image
+	//backdrop-filter: blur(5px)
+	//background-color: $c_bg_03a
+
+//this is the central point of the universe that keeps the layout form getting fucked up
+html, body
+	margin: 0px
+	padding: 0px
+	height: 100%
+	box-sizing: border-box
+
+div
+	box-sizing: border-box
+
+html
+	//default text color, just in case I omit it somewhere accidentally
+	font:
+		family: $f_txt
+		size: $f_size_txt
+	color: $c_txt 
+	background-color: $c_bg_main
+
+body
+	@include flex_v_full
+	//force-show scrollbar
+	overflow-y: scroll
+	//this is in case I wanted a full-page bg again
+	background:
+		position-x: center
+		position-y: center
+		repeat: no-repeat
+		attachment: fixed
+		image: none //url("ESO  (43).png")
+		size: cover
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+
+.default
+	color: $c_txt
+	font:
+		family: $f_txt
+
+.comment
+	color: $c_txt_darker1
+	font:
+		style: italic
+
+.highlight
+	color: $c_highlight_main
+	background-color: $c_bg_highlight
+	border:
+		left: 1px solid $c_highlight_main
+	padding: 1em
+
+h1
+	color: $c_highlight_main
+	font:
+		weight: bold
+		size: 120%
+
+h2
+	color: $c_highlight_bright
+	font:
+		weight: bold
+		size: 120%
+
+h3
+	color: $c_highlight_bright
+	font:
+		size: 120%
+
+h4
+	color: $c_highlight_bright
+	font:
+		weight: bold
+		size: 110%
+
+h5
+	font:
+		size: 110%
+
+h6
+	font:
+		weight: bold
+		size: 105%
+
+.indent > a, .indent > p
+	padding:
+		left: 3em
+
+.linkblock a
+	display: block
+	margin: 1em auto
+
+pre
+	background-color: $c_bg_04a
+	font:
+		size: 90%
