@@ -68,6 +68,7 @@ main {
   width: 70%;
   height: 100%;
   padding: 2em;
+  word-wrap: break-word;
 }
 
 html, body {
@@ -131,14 +132,14 @@ h1 {
 }
 
 h2 {
-  color: #d3d3d3;
+  color: #00c77b;
   font-weight: bold;
   font-size: 120%;
 }
 
 h3 {
   color: #d3d3d3;
-  font-size: 120%;
+  font-size: 115%;
 }
 
 h4 {
@@ -162,7 +163,17 @@ h6 {
 
 .linkblock a {
   display: block;
-  margin: 1em auto;
+  margin: 0em auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.linkblock a:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.linkblock a:active {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 pre {
@@ -180,5 +191,6 @@ pre {
   .textbg {
     width: 100%;
     padding: 1.5em;
+    font-size: 80%;
   }
 }

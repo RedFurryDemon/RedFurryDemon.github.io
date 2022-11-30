@@ -31,7 +31,6 @@ button
 	color: $c_highlight_white
 	text-shadow: 0px 0px 10px $c_highlight_main, 0px 0px 5px $c_highlight_main
 
-
 hr
 	border: none
 	height: 1px
@@ -52,6 +51,7 @@ main
 	width: 70%
 	height: 100%
 	padding: 2em
+	word-wrap: break-word //this fixes the problem with links breaking page layout on mobile
 	//RFD - uncomment in case I wanted to use a background image
 	//backdrop-filter: blur(5px)
 	//background-color: $c_bg_03a
@@ -114,7 +114,7 @@ h1
 		size: 120%
 
 h2
-	color: $c_highlight_bright
+	color: $c_highlight_main
 	font:
 		weight: bold
 		size: 120%
@@ -122,7 +122,7 @@ h2
 h3
 	color: $c_highlight_bright
 	font:
-		size: 120%
+		size: 115%
 
 h4
 	color: $c_highlight_bright
@@ -145,7 +145,14 @@ h6
 
 .linkblock a
 	display: block
-	margin: 1em auto
+	margin: 0em auto
+	padding:
+		top: 1em
+		bottom: 1em
+	&:hover
+		background-color: $c_bg_04a
+	&:active
+		background-color: $c_bg_05a
 
 pre
 	background-color: $c_bg_04a
@@ -161,3 +168,5 @@ pre
 	.textbg
 		width: 100%
 		padding: 1.5em
+		font:
+			size: 80%
