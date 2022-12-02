@@ -11,14 +11,20 @@
 .phylum_options {
   color: #00c77b;
   font-weight: bold;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 .phylum_options:hover {
   background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-shadow: 0px 0px 5px #00c77b;
 }
 
 .phylum_options:active {
   background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-shadow: 0px 0px 5px #fff;
 }
 
 .clade_name {
@@ -78,7 +84,6 @@
 .clade_desc_hidden {
   color: #999999;
   border-left: 1px solid #999999;
-  font-style: italic;
 }
 
 .species {
@@ -95,27 +100,19 @@
 }
 
 .clade > div {
-  padding-left: 3em;
+  padding-left: 2em;
 }
 
 .clade > .species {
-  margin-left: 3em;
-}
-
-.clade_no_indent > div {
-  padding-left: 0em;
-}
-
-.clade_no_indent > .species {
-  margin-left: 0em;
+  margin-left: 2em;
 }
 
 @media only screen and (max-width: 1200px) {
   .clade > div {
-    padding-left: 1.7em;
+    padding-left: 1.5em;
   }
   .clade > .species {
-    margin-left: 1.7em;
+    margin-left: 1.5em;
   }
 }
 
@@ -126,4 +123,12 @@
   .clade > .species {
     margin-left: 1em;
   }
+}
+
+.clade_no_indent > div {
+  padding-left: 0em;
+}
+
+.clade_no_indent > .species {
+  margin-left: 0em;
 }

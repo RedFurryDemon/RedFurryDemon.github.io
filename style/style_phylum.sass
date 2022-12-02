@@ -7,10 +7,17 @@
 .phylum_options
 	color: $c_highlight_main
 	font-weight: bold
+	padding:
+		left: 1.5em
+		right: 1.5em
 	&:hover
 		background-color: $c_bg_04a
+		color: $c_highlight_white
+		text-shadow: 0px 0px 5px $c_highlight_main
 	&:active
 		background-color: $c_bg_05a
+		color: $c_highlight_white
+		text-shadow: 0px 0px 5px $c_highlight_white
 
 .clade_name
 	color: $c_highlight_bright
@@ -69,8 +76,6 @@
 	//background-color: $c_bg_03a
 	border:
 		left: 1px solid $c_txt_darker1
-	font:
-		style: italic
 
 .species
 	background-color: $c_bg_04a
@@ -88,30 +93,22 @@
 
 .clade > div
 	padding:
-		left: 3em
+		left: 2em
 
 .clade > .species
 	margin:
-		left: 3em
-
-.clade_no_indent > div
-	padding:
-		left: 0em
-
-.clade_no_indent > .species
-	margin:
-		left: 0em
+		left: 2em
 
 //RWD
 
 @media only screen and (max-width: $rwd_tablet)
 	.clade > div
 		padding:
-			left: 1.7em
+			left: 1.5em
 
 	.clade > .species
 		margin:
-			left: 1.7em
+			left: 1.5em
 
 @media only screen and (max-width: $rwd_phone)
 	.clade > div
@@ -121,3 +118,13 @@
 	.clade > .species
 		margin:
 			left: 1em
+
+//this goes after RWD!
+
+.clade_no_indent > div
+	padding:
+		left: 0em
+
+.clade_no_indent > .species
+	margin:
+		left: 0em
