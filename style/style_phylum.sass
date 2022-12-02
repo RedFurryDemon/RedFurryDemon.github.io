@@ -1,36 +1,72 @@
 @import _core
 
-ul, #tree
-	list-style-type: none
-
 #tree
-	margin: 0
+	margin-top: 1em
 	padding: 0
+
+.phylum_options
+	color: $c_highlight_main
+	font-weight: bold
+	&:hover
+		background-color: $c_bg_04a
+	&:active
+		background-color: $c_bg_05a
 
 .clade_name
 	color: $c_highlight_bright
-	//cursor: pointer
+	background-color: $c_bg_04a
+	cursor: pointer
 	font-weight: bold
 	margin: 0px
+	padding: 0.5em
+	border:
+		left: 1px solid  $c_txt
+	&:hover
+		background-color: $c_bg_03a
+		&::after
+			content: "\2212"
+			color: $c_txt_darker1
+			float: right
+			margin:
+				left: 1em
+				right: 0.7em
+			font-weight: normal
+			font-style: normal
 
 .clade_name_hidden
 	color: $c_txt_darker1
+	border:
+		left: 1px solid $c_txt_darker1
+	&::after
+		content: "\002B"
+		color: $c_txt_darker1
+		float: right
+		margin:
+			left: 1em
+			right: 0.7em
+		font-weight: normal
+		font-style: normal
+
+.clade_name_spacing
+	margin:
+		top: 1em
+		bottom: 1em
 
 .clade_desc
 	color: $c_txt
-	background-color: $c_bg_04a
+	//background-color: $c_bg_04a
 	border:
 		left: 1px solid  $c_txt
 	padding: 0.7em 1em
 	margin:
-		top: 0.2em
+		top: 0em
 		bottom: 1em
 		left: 0em
 		right: 0em
 
 .clade_desc_hidden
 	color: $c_txt_darker1
-	background-color: $c_bg_03a
+	//background-color: $c_bg_03a
 	border:
 		left: 1px solid $c_txt_darker1
 	font:
@@ -39,8 +75,13 @@ ul, #tree
 .species
 	background-color: $c_bg_04a
 	color: $c_highlight_main
+	border:
+		left: 1px solid  $c_txt
 	padding: 0.7em 1.5em
 	//margin: 0.2em 0em
+	margin:
+		top: 1em
+		bottom: 1em
 
 .hidden
 	display: none
@@ -52,6 +93,14 @@ ul, #tree
 .clade > .species
 	margin:
 		left: 3em
+
+.clade_no_indent > div
+	padding:
+		left: 0em
+
+.clade_no_indent > .species
+	margin:
+		left: 0em
 
 //RWD
 

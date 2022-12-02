@@ -12,6 +12,7 @@
 	<script src="scripts/shared.js" defer></script>
 
 	<title>RFD's Scratchpad</title>
+	<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 
 <body onload="onPageLoad()">
@@ -21,15 +22,18 @@
 	<div id="content_id">
 		<div class="textbg">
 			<p>Species are highlighted in green and identified by name, description, or design number.</p>
-			<p>revised 29 Nov 2022</p>
+			<p>revised 2 Dec 2022</p>
 
 			<hr>
-
+			<div style="text-align: center">
+				<button class="phylum_options" id="b_toggleIndent">toggle indentation</button>
+				<button class="phylum_options" id="b_toggleDesc">toggle descriptions</button>
+			</div>
 			<div id="tree" class="clade">
 				<p class="clade_name">[DIVISIO] <i>Dracomorpha</i></p>
 				<p class="clade_desc">draconids: quadrupedal, heavily-plated terrestrial reptiles</p>
 				<div class="clade">
-					<p class="clade_name">[ORDO] ?</p>
+					<p class="clade_name">[ORDO] <i>Levisquamigera</i></p>
 					<p class="clade_desc">wyrms and wyverns</p>
 					<div class="clade">
 						<p class="clade_name">[SUBORDO] <i>Serpentiformes</i></p>
@@ -37,7 +41,11 @@
 						<div class="clade">
 							<p class="clade_name">[FAMILIA] ?</p>
 							<p class="clade_desc">arboreal clade</p>
-							<p class="species">003-03</p>
+							<p class="species">003-03
+								<a href="https://www.deviantart.com/deviation/939323605">[DA]</a>
+								<a href="https://www.furaffinity.net/view/50046191">[FA]</a>
+							</p>
+							<p class="species">lamia <i>Lamia</i> spp.</p>
 						</div>
 						<div class="clade">
 							<p class="clade_name">?</p>
@@ -62,7 +70,7 @@
 						</div>
 					</div>
 					<div class="clade">
-						<p class="clade_name">[SUBORDO] ?</p>
+						<p class="clade_name">[SUBORDO] <i>Vivernae</i></p>
 						<p class="clade_desc">wyverns: small-to-medium flying draconids with membranous wings</p>
 						<div class="clade">
 							<p class="clade_name">?</p>
@@ -84,7 +92,7 @@
 					</div>
 				</div>
 				<div class="clade">
-					<p class="clade_name">[ORDO] ?</p>
+					<p class="clade_name">[ORDO] <i>Gravisquamigera</i></p>
 					<p class="clade_desc">drakes: quadrupedal draconids with legs straight under the body</p>
 					<div class="clade">
 						<p class="clade_name">?</p>
@@ -125,11 +133,11 @@
 									<p class="clade_desc">definitely not cassowaries: dravirs with reduced tail</p>
 								</div>
 								<div class="clade">
-									<p class="clade_name">?</p>
+									<p class="clade_name"><i>Aves</i></p>
 									<p class="clade_desc">birds: dravirs capable of active flight</p>
 								</div>
 								<div class="clade">
-									<p class="clade_name">[FAMILIA] ?</p>
+									<p class="clade_name">[FAMILIA] <i>Gryphidae</i></p>
 									<p class="clade_desc">griffins: quadrupedal, feathered reptiles</p>
 									<p class="species">Zir'han's species</p>
 									<p class="species">001-03
@@ -157,7 +165,7 @@
 		}
 
 	</script>
-
+	<script src="scripts/phylum.js" defer></script>
 </body>
 
 </html>
