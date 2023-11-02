@@ -1,0 +1,68 @@
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --body-bg: #141414;
+  --body-txt: rgba(255, 255, 255, 0.76);
+  --body-txt-darker: rgba(255, 255, 255, 0.6);
+  --body-txt-brighter: rgba(255, 255, 255, 0.85);
+  --highlight-txt: rgba(0, 255, 157, 0.8);
+  --highlight-txt-white: #fff;
+  --highlight-bg: rgba(0, 199, 123, 0.2);
+  --heading-txt: #fff;
+  --link: rgba(0, 255, 157, 0.8);
+  --link-alpha: rgba(0, 255, 157, 0);
+  --link-hover: #fff;
+  --link-hover-glow: rgba(0, 255, 157, 0.8);
+  --link-active: #fff;
+  --link-active-glow: rgba(0, 255, 157, 0.8);
+  --link-focus-shadow: #fff;
+  --link-background: rgba(0, 0, 0, 0.4);
+  --navbar-title-bg: rgba(0, 0, 0, 0.4);
+  --navbar-top-bg: rgba(0, 0, 0, 0.4);
+  --navbar-bottom-bg: rgba(0, 0, 0, 0.4);
+  --nav-txt: rgba(255, 255, 255, 0.76);
+  --nav-txt-hover: rgba(255, 255, 255, 0.85);
+  --body-txt-brighter: rgba(255, 255, 255, 0.85);
+  --textbg-bg: none;
+  --block-bg: rgba(0, 0, 0, 0.4);
+  --block-bg-color: rgba(0, 83, 64, 0.2);
+  --icon: #666666;
+  --icon-hover: #ccc;
+  --icon-active: gray;
+  --blockquote-bg-start: rgba(0, 199, 123, 0);
+  --blockquote-bg-end: rgba(0, 199, 123, 0.2);
+  --blockquote-border: rgba(0, 199, 123, 0.2);
+  --foldable-header-txt: #ccc;
+  --foldable-header-bg: rgba(0, 0, 0, 0.5);
+  --foldable-header-bg-folded: rgba(0, 0, 0, 0.4);
+  --foldable-content-bg: rgba(0, 0, 0, 0.2);
+  --foldable-border: #fff;
+  --foldable-border-folded: rgba(0, 255, 157, 0.8);
+}

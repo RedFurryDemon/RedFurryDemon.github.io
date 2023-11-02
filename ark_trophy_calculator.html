@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style/style__main.css">
+	<link rel="stylesheet" type="text/css" href="style/style_app_ark_trophy_calc.css">
+
+	<title>RFD's Scratchpad</title>
+	<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+	<link id="theme_css" rel="stylesheet" type="text/css" href="style/theme_dark.css">
+
+	<script src="scripts/ark_calc_data.js"></script>
+
+	<script src="scripts/lib/tinysort.js"></script>
+	<script>tinysort.defaults.console = false;</script>
+
+	<!--no defer!
+	<script src="scripts/shared.js"></script>-->
+
+</head>
+
+<body>
+
+<div id="ark_popup_container">
+	<p class="ark_popup" id="ark_popup_not_enough">not enough RPD to purchase this</p>
+	<p class="ark_popup" id="ark_popup_below_0">the cost exceeds the amount of RPD available</p>
+	<p class="ark_popup" id="ark_popup_copied">copied to clipboard</p>
+</div>
+
+	<h1>ARK trading calculator</h1>
+
+	<div id="column_left">
+		<div class="ark_sidenav">
+
+			<div>
+				<button class="ark_b_tab active" onclick="showTab(event, 'ark_species')">creatures</button>
+				<div>
+					<button class="ark_b_filter active" onclick="filterAll('ark_species')"> show all</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'alpha')">alpha creatures</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'dungeon')">dungeon exclusive</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'bird')">birds</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'na_dinosaur')">non-avialan dinosaurs</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'nd_reptile')">non-dinosaur reptiles</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'synapsid')">synapsids</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'fish')">fish</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_species', 'invertebrate')">invertebrates</button>
+				</div>
+				<button class="ark_b_tab" onclick="showTab(event, 'ark_resource')">resources</button>
+				<div>
+					<button class="ark_b_filter active" onclick="filterAll('ark_resource')"> show all</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_resource', 'basic')">basic</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_resource', 'derived')">derived</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_resource', 'spawnable')">spawnable</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_resource', 'non-spawnable')">non-spawnable</button>
+				</div>
+				<button class="ark_b_tab" onclick="showTab(event, 'ark_item')">items</button>
+				<div>
+					<button class="ark_b_filter active" onclick="filterAll('ark_item')"> show all</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_item', 'weapon')">weapons</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_item', 'ammunition')">ammunition</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_item', 'armor')">armor</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_item', 'saddle')">saddles</button>
+					<button class="ark_b_filter" onclick="filterSelection('ark_item', 'other')">other</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="column_right">
+		<div id="arkcalc_output">
+
+			<p>Total: <span id="ark_prize_total">0</span> RPD</p>
+			<p>Remaining: <span id="ark_prize_remaining">0</span> RPD</p>
+			<button id="ark_reset_all" onclick="resetArkCalc()">reset</button>
+
+			<ul id="ark_output_list"></ul>
+
+			<button id="ark_copy_clipboard" onclick="copyToClipboard()">copy to clipboard</button>
+			<button id="ark_open_help" onclick="arkHelpShow()">help</button>
+
+		</div>
+	</div>
+
+	<div id="column_center">
+
+		<div id="content_id">
+
+			<div class="textbg">
+
+				<div id="arkcalc_help">
+					<div class="arkcalc_help_header">
+						<span class="arkcalc_help_close" onclick="arkHelpHide()">&times;</span>
+						<h2>help</h2>
+					</div>
+					<div class="arkcalc_help_main">
+						<p>All implants must come from wild creatures. If you do not wish to kill a particular creature for any reason, knocking it out and taking the implant is permitted as well.</p>
+						<p>The implants of certain creatures are not accessible through regular means. Notably, this includes alpha creatures and the titanosaurus. In such cases, turn in a screenshot with (1) the name of the creature visible and (2) your easily identifiable tame and/or your character in third person view. Alternatively, you may ask an admin to oversee your hunt.</p>
+						<p>The primary currency unit is a raptor dollar (RPD), which is the prize for turning in one raptor implant.</p>
+						<p>Click on the header to sort ascending or descending; click again to sort in the reverse order. Each group is sorted independently. Please note that sorting by count hasn't been implemented.</p>
+						<p>Clicking on the main header will preserve the last filter used for that group.</p>
+
+					</div>
+					<div class="arkcalc_help_footer">
+						<p>Please report any bugs or unexpected behavior to RFD on Discord or Reddit; include a screenshot if possible.</p>
+					</div>
+				</div>
+
+
+				<div id="ark_tables">
+					<div class="ark_table" id="ark_species_table">
+						<div class="ark_table_header">
+							<button class="ark_header_name" onclick="arkSort('ark_dino_name', 'ark_species_table')">species name</button>
+							<button class="ark_header_cost" onclick="arkSort('ark_dino_prize', 'ark_species_table')">prize</button>
+						</div>
+					</div>
+					<div class="ark_table" id="ark_resource_table">
+						<div class="ark_table_header"><span class="ark_res_category"></span>
+							<button class="ark_header_name" onclick="arkSort('ark_res_name', 'ark_resource_table')">resource name</button>
+							<button class="ark_res_stack" onclick="arkSort('ark_res_stack', 'ark_resource_table')">stack</button>
+							<button class="ark_header_cost" onclick="arkSort('ark_res_cost', 'ark_resource_table')">cost</button>
+						</div>
+					</div>
+					<div class="ark_table" id="ark_item_table">
+						<div class="ark_table_header">
+							<button class="ark_header_name" onclick="arkSort('ark_item_name', 'ark_item_table')">item name</button>
+							<button class="ark_header_quality" onclick="arkSort('ark_item_quality', 'ark_item_table')">quality</button>
+							<button class="ark_header_cost" onclick="arkSort('ark_item_cost', 'ark_item_table')">cost</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer_id">
+				<div id="arkcalc_credits">
+					<p>coding: RFD; testing: Amare46; sorting script: Ron Valstar</p>
+					<p>license: GNU GPL 3.0</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		//total value of all creatures
+		let prize_total = 0;
+		//unspent value
+		let prize_remaining = 0;
+		//predicted prize_expected after an operation
+		let prize_expected = 0;
+
+		let sorting_data = {
+			ark_dino_name: true,
+			ark_dino_prize: false,
+			ark_res_name: false,
+			ark_res_stack: false,
+			ark_res_cost: false,
+			ark_res_max_amount: false,
+			ark_item_name: false,
+			ark_item_quality: false,
+			ark_item_cost: false
+		}
+
+		//counting orders
+
+		let count_dino = [];
+		let count_resource = [];
+		let count_item = [];
+
+		function arkSort(attr, table_id) {
+			//check whether to sort ascending or descending
+			if (sorting_data[attr]) {
+				tinysort('div#' + table_id + '>div', {selector: 'div.' + attr, order: 'desc'})
+			} else {
+				tinysort('div#' + table_id + '>div', {selector: 'div.' + attr, order: 'asc'})
+			}
+			//switch the sorting data so the next sort is in the opposite direction
+			sorting_data[attr] = (sorting_data[attr] == false) ? true : false;
+		}
+
+function removePopup(id) {
+  var popup = document.getElementById(id);
+  popup.classList.remove("ark_popup_show");
+}
+
+function showPopup(id) {
+  var popup = document.getElementById(id);
+  popup.classList.add("ark_popup_show");
+  setTimeout(function () {removePopup(id);}, 2000);
+}
+
+function alertPrize() {
+	showPopup('ark_popup_not_enough');
+	prize_expected = prize_remaining;
+}
+
+		function updatePrize() {
+			document.getElementById("ark_prize_total").innerHTML = prize_total;
+			document.getElementById("ark_prize_remaining").innerHTML = prize_remaining;
+			prize_expected = prize_remaining;
+			console.log("prize_expected: " + prize_expected);
+		}
+
+		function resetArkCalc() {
+			prize_total = 0;
+			prize_remaining = 0;
+			prize_expected = 0;
+			updatePrize();
+			count_dino = [];
+			count_resource = [];
+			count_item = [];
+			document.getElementById("ark_output_list").replaceChildren();
+		}
+
+		function showSpecies() {
+			for (let i = 0; i < species_list.length; i++) {
+				let tn_name = document.createTextNode(species_list[i].species_name);
+				let tn_prize = document.createTextNode(species_list[i].prize);
+
+				let ark_dino_name = document.createElement("div");
+				let ark_dino_prize = document.createElement("div");
+
+				let ark_dino_add = document.createElement("button");
+
+				ark_dino_name.classList.add("ark_dino_name");
+				ark_dino_prize.classList.add("ark_dino_prize");
+
+				let ark_species_row = document.createElement("div");
+				ark_species_row.classList.add("ark_species_row");
+
+/*
+				if (species_list[i].vernacular_name) {
+					ark_species_row.setAttribute("title", species_list[i].vernacular_name);
+				}
+*/
+				//to-do: clean up the prize functions
+
+				ark_dino_add.classList.add("ark_add");
+				ark_dino_add.addEventListener("click", function () {count_add_dino(i);});
+
+				ark_dino_name.appendChild(tn_name);
+				ark_dino_prize.appendChild(tn_prize);
+
+				ark_species_row.append(ark_dino_name, ark_dino_prize, ark_dino_add);
+
+				for (let j = 0; j < species_list[i].category.length; j++) {
+					ark_species_row.classList.add(species_list[i].category[j]);
+				}
+
+				if (species_list[i].note) {
+					ark_species_row.setAttribute("title", species_list[i].note);
+					let tn_note = document.createTextNode(species_list[i].note);
+					let ark_dino_note = document.createElement("div");
+					ark_dino_note.appendChild(tn_note);
+					ark_dino_note.classList.add("ark_note");
+					ark_species_row.appendChild(ark_dino_note);
+				}
+
+				document.getElementById("ark_species_table").append(ark_species_row);
+			}
+
+		}
+
+		function showResources() {
+			for (let i = 0; i < resource_list.length; i++) {
+
+				let tn_res_name = document.createTextNode(resource_list[i].name);
+				let tn_res_stack = document.createTextNode(resource_list[i].stack);
+				let tn_res_cost = document.createTextNode(resource_list[i].cost);
+
+				let ark_res_category = document.createElement("span");
+				let ark_res_name = document.createElement("div");
+				let ark_res_stack = document.createElement("div");
+				let ark_res_cost = document.createElement("div");
+				let ark_res_add = document.createElement("button");
+
+				ark_res_category.classList.add("ark_res_category");
+
+				ark_res_add.addEventListener("click", function () {count_add_res(i);});
+
+				ark_res_name.classList.add("ark_res_name");
+				ark_res_stack.classList.add("ark_res_stack");
+				ark_res_cost.classList.add("ark_res_cost");
+				ark_res_add.classList.add("ark_add");
+
+				ark_res_name.appendChild(tn_res_name);
+				ark_res_stack.appendChild(tn_res_stack);
+				ark_res_cost.appendChild(tn_res_cost);
+
+				let ark_res_row = document.createElement("div");
+				ark_res_row.classList.add("ark_resource_row");
+
+				ark_res_row.append(ark_res_category, ark_res_name, ark_res_stack, ark_res_cost, ark_res_add);
+
+				for (let j = 0; j < resource_list[i].category.length; j++) {
+					ark_res_row.classList.add(resource_list[i].category[j]);
+				}
+
+				document.getElementById("ark_resource_table").append(ark_res_row);
+			}
+
+		}
+
+
+		function showItems() {
+
+			for (let i = 0; i < item_list.length; i++) {
+/*
+let name = "";
+
+if (item_list[i].category.includes("ammunition")) {
+name = item_list[i].name + " (x" + item_list[i].stack + ")"
+			} else {
+				name = item_list[i].name;
+			}
+
+				let tn_item_name = document.createTextNode(name);
+				*/
+				let tn_item_name = document.createTextNode(item_list[i].name);
+
+				let tn_item_quality = document.createTextNode(item_list[i].quality);
+				let tn_item_cost = document.createTextNode(item_list[i].cost);
+
+				let ark_item_name = document.createElement("div");
+				let ark_item_quality = document.createElement("div");
+				let ark_item_cost = document.createElement("div");
+				let ark_item_add = document.createElement("button");
+
+				ark_item_add.addEventListener("click", function () {count_add_item(i);});
+
+				ark_item_name.classList.add("ark_item_name");
+				ark_item_quality.classList.add("ark_item_quality");
+				ark_item_cost.classList.add("ark_item_cost");
+				ark_item_add.classList.add("ark_add");
+
+				ark_item_name.appendChild(tn_item_name);
+				ark_item_quality.appendChild(tn_item_quality);
+				ark_item_cost.appendChild(tn_item_cost);
+
+				let ark_item_row = document.createElement("div");
+				ark_item_row.classList.add("ark_item_row");
+
+				ark_item_row.append(ark_item_name, ark_item_quality, ark_item_cost, ark_item_add);
+
+				for (let j = 0; j < item_list[i].category.length; j++) {
+					ark_item_row.classList.add(item_list[i].category[j]);
+				}
+
+				document.getElementById("ark_item_table").append(ark_item_row);
+
+			}
+		}
+
+		function count_add_dino(i) {
+			count_dino.push(i);
+			console.log(count_dino);
+			prize_total += species_list[i].prize;
+			prize_remaining += species_list[i].prize;
+			updatePrize();
+			let output_name = species_list[i].species_name;
+			if (species_list[i].category.includes("alpha")) {
+output_name = output_name + " (ALPHA)"
+			}
+			addOutputRow(output_name, datatype = "dino", dataindex = i);
+		}
+
+
+		function count_remove_dino(e) {
+			/*
+				let removed_index = count_dino.lastIndexOf(i);
+				console.log(i + " is found at index " + removed_index);
+				count_dino.splice(removed_index, 1);
+				console.log(count_dino);
+				prize_total -= species_list[i].prize;
+				prize_remaining -= species_list[i].prize;
+				//this.parentElement.querySelector(".ark_counter").innerHTML--;
+				*/
+			//count_dino.push(i);
+			let data_i = this.parentElement.dataset.dataindex
+			let removed_index = count_dino.lastIndexOf(data_i);
+			//RFD - debug this! returns undefined, pops the array
+			console.log(data_i + " is found at index " + removed_index);
+			count_dino.splice(removed_index, 1);
+			console.log(count_dino);
+			//prize_total += species_list[i].prize;
+			//prize_remaining += species_list[i].prize;
+			updatePrize();
+			//this.parentElement.remove();
+
+		}
+
+		function count_add_res(i) {
+			prize_expected -= resource_list[i].cost;
+			if (prize_expected < 0) {
+						alertPrize();
+					} else {
+			prize_remaining -= resource_list[i].cost;
+			//RFD's note - WHY in the everloving fuck does this even work??!
+			//MAGIC?
+			//this.parentElement.querySelector(".ark_counter").innerHTML = Number(this.parentElement.querySelector(".ark_counter").innerHTML) + resource_list[i].stack;
+			updatePrize();
+			let output_res_text = resource_list[i].name + " (" + resource_list[i].stack + ")"
+			addOutputRow(output_res_text, datatype = "res", dataindex = i);}
+		}
+
+		function count_remove_res(i) {
+			prize_remaining += resource_list[i].cost;
+			//RFD's note - WHY in the everloving fuck does this even work??!
+			//MAGIC?
+			//this.parentElement.querySelector(".ark_counter").innerHTML -= resource_list[i].stack;
+			updatePrize();
+		}
+
+		function count_add_item(i) {
+			prize_expected -= Number(item_list[i].cost);
+			if (prize_expected < 0)  {
+						alertPrize();
+					} else {
+			prize_remaining -= Number(item_list[i].cost);
+			updatePrize();
+			addOutputRow(item_list[i].name, datatype = "item", dataindex = i);}
+		}
+
+		function count_remove_item(i) {
+			if (Number(this.parentElement.querySelector(".ark_counter").innerHTML > 0)) {
+				prize_remaining += item_list[i].cost;
+				//RFD's note - WHY in the everloving fuck does this even work??!
+				//MAGIC?
+				this.parentElement.querySelector(".ark_counter").innerHTML--;
+				updatePrize();
+			}
+		}
+
+
+		function filterSelection(classlist, category) {
+			let rows = document.getElementsByClassName(classlist + "_row");
+			for (let i = 0; i < rows.length; i++) {
+				if (rows[i].classList.contains(category)) {
+					rows[i].classList.add("show");
+				} else {
+					rows[i].classList.remove("show");
+				}
+				showTab(event, classlist);
+			}
+		}
+
+		function filterAll(classname) {
+			let rows = document.getElementsByClassName(classname + "_row");
+			for (let i = 0; i < rows.length; i++) {
+				rows[i].classList.add("show");
+			}
+			showTab(event, classname);
+		}
+
+		function showTab(evt, tabName) {
+			let i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("ark_table");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			/*tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+			  tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}*/
+			document.getElementById(tabName + "_table").style.display = "block";
+			//evt.currentTarget.className += " active";
+		}
+
+		function arkHelpShow() {
+			document.getElementById("arkcalc_help").style.display = "block";
+		}
+
+		function arkHelpHide() {
+			document.getElementById("arkcalc_help").style.display = "none";
+		}
+
+		function addOutputRow(text, datatype = "none", dataindex = 0) {
+
+			let tn_output = document.createTextNode(text);
+			let output_row = document.createElement("li");
+
+			output_row.setAttribute("data-type", datatype)
+			output_row.setAttribute("data-index", dataindex)
+
+			let tn_remove_button = document.createTextNode("remove");
+			let remove_button = document.createElement("button");
+			remove_button.appendChild(tn_remove_button);
+			remove_button.classList.add("ark_b_remove");
+
+			remove_button.addEventListener("click", cbChange, false);
+
+			output_row.append(tn_output, remove_button);
+			document.getElementById("ark_output_list").appendChild(output_row);
+			//remove_button.addEventListener("click", function (e) {count_remove_dino(e);}.bind(this));
+
+		}
+
+		//to-do - make this a shared function?
+		function copyToClipboard() {
+			if (prize_remaining < 0) {
+						showPopup('ark_popup_below_0');
+					} else {
+			let outputContent = document.getElementById("ark_output_list").textContent;
+			outputContent = outputContent.replace(/remove/g, `\n`);
+			outputContent = "prize total: " + prize_total + "\nprize remaining: " + prize_remaining + "\n\n" + outputContent;
+			outputContent = "```\n" + outputContent + "```";
+			navigator.clipboard.writeText(outputContent);
+			showPopup('ark_popup_copied');
+		}}
+		/*
+		function fuckThis() {
+		console.log("this - start");
+				var checkboxes = document.getElementsByClassName('ark_b_remove');
+				Array.from(checkboxes).forEach(function (element) {
+					//                                      ^^^^^^^
+					console.log("this - loop");
+					element.addEventListener("click", cbChange, false);
+					//^^^^^^^  
+				})};
+				*/
+
+		function cbChange() {
+			let i = this.parentElement.dataset.index;
+			let datatype = this.parentElement.dataset.type
+
+			switch (datatype) {
+				case "dino":
+					console.log("creature");
+					prize_total -= species_list[i].prize;
+					prize_remaining -= species_list[i].prize;
+					//alert the user if prize_remaining is below 0!
+					if (prize_remaining < 0) {
+						showPopup('ark_popup_below_0');
+					}
+					break;
+				case "res":
+					console.log("resource");
+					prize_remaining += resource_list[i].cost;
+					break;
+				case "item":
+					console.log("item type");
+					prize_remaining += item_list[i].cost;
+					break;
+				default:
+					alert("Unknown data category: " + datatype);
+			}
+
+			console.log("this - dataindex: " + this.parentElement.dataset.index);
+
+			updatePrize();
+			this.parentElement.remove();
+		}
+
+		showSpecies();
+		showResources();
+		showItems();
+		filterAll('ark_species');
+		filterAll('ark_resource');
+		filterAll('ark_item');
+		updatePrize();
+	</script>
+
+</body>
+
+</html>

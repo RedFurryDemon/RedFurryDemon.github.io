@@ -1,74 +1,51 @@
+@charset "UTF-8";
 @font-face {
   font-family: solidMono;
   src: url("../assets/Solid-Mono.ttf");
 }
 
-a {
-  text-decoration: none;
-  color: #00c77b;
-  font-weight: bold;
-  transition-duration: 0.15s;
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
 }
 
-a:hover {
-  color: #fff;
-  text-shadow: 0px 0px 5px #00c77b;
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
 }
 
-a:active {
-  color: #fff;
-  text-shadow: 0px 0px 5px #fff;
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
 }
 
-button {
-  background: none;
-  border: none;
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
+
+.wip {
+  background-color: #ae00ff3b !important;
+}
+
+*:focus {
   outline: none;
-  color: #c2c2c2;
-  font-family: solidMono, monospace;
-  font-size: 100%;
-  padding: 10px 10px;
-  display: inline-block;
-  cursor: default;
 }
 
-::selection, ::-moz-selection {
-  color: #fff;
-  text-shadow: 0px 0px 10px #00c77b, 0px 0px 5px #00c77b;
+*:focus-visible {
+  outline: none;
 }
 
-hr {
-  border: none;
-  height: 1px;
-  background-image: linear-gradient(to right, rgba(194, 194, 194, 0), #c2c2c2, rgba(194, 194, 194, 0));
-}
-
-main {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-direction: row;
-  min-width: 100%;
-  font-family: solidMono, monospace;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
-}
-
-#content_id {
-  margin: 0px;
-  flex-grow: 0;
-  width: 100%;
+* {
   box-sizing: border-box;
-  flex-grow: 1;
-}
-
-.textbg {
-  margin: 0em auto;
-  width: 70%;
-  height: 100%;
-  padding: 2em;
-  word-wrap: break-word;
 }
 
 html, body {
@@ -78,15 +55,11 @@ html, body {
   box-sizing: border-box;
 }
 
-div {
-  box-sizing: border-box;
-}
-
 html {
-  font-family: solidMono, monospace;
+  font-family: "Lab Mono Web", sans-serif;
   font-size: 100%;
-  color: #c2c2c2;
-  background-color: #141414;
+  color: var(--body-txt);
+  background-color: var(--body-bg);
 }
 
 body {
@@ -97,88 +70,39 @@ body {
   flex-direction: column;
   min-height: 100%;
   overflow-y: scroll;
-  background-position-x: center;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: none;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
 }
 
-.default {
-  color: #c2c2c2;
-  font-family: solidMono, monospace;
+#header_id,
+#footer_id {
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: row;
+  min-width: 100%;
+  background-color: var(--navbar-top-bg);
+  padding: 0em 0.5em;
+  justify-content: center;
 }
 
-.comment {
-  color: #999999;
-  font-style: italic;
+#footer_id {
+  background-color: var(--navbar-bottom-bg);
 }
 
-.highlight {
-  color: #00c77b;
-  background-color: rgba(0, 199, 123, 0.2);
-  border-left: 1px solid #00c77b;
-  padding: 1em;
+#content_id {
+  margin: 0px;
+  width: 100%;
+  flex-grow: 1;
 }
 
-h1 {
-  color: #00c77b;
-  font-weight: bold;
-  font-size: 120%;
-}
-
-h2 {
-  color: #00c77b;
-  font-weight: bold;
-  font-size: 120%;
-}
-
-h3 {
-  color: #d3d3d3;
-  font-size: 115%;
-}
-
-h4 {
-  color: #d3d3d3;
-  font-weight: bold;
-  font-size: 110%;
-}
-
-h5 {
-  font-size: 110%;
-}
-
-h6 {
-  font-weight: bold;
-  font-size: 105%;
-}
-
-.indent > a, .indent > p {
-  padding-left: 3em;
-}
-
-.linkblock a {
-  display: block;
+.textbg {
   margin: 0em auto;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
-.linkblock a:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.linkblock a:active {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-pre {
-  background-color: rgba(0, 0, 0, 0.4);
-  font-size: 90%;
+  width: 70%;
+  padding: 2em 3em;
+  word-wrap: break-word;
+  background-color: var(--textbg-bg);
 }
 
 @media only screen and (max-width: 1200px) {
@@ -195,4 +119,636 @@ pre {
     padding: 1em;
     font-size: 80%;
   }
+}
+
+.flex_v {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.flex_h {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: purple;
+}
+
+::selection {
+  color: #fff;
+  background-color: purple;
+}
+
+.indent > a,
+.indent > p,
+.indent > div {
+  padding-left: 3em;
+}
+
+.indent > pre {
+  margin-left: 1em;
+}
+
+pre {
+  padding: 1.5em;
+  color: #fff;
+  overflow: auto;
+  margin-bottom: 1.75em;
+  background-color: var(--navbar-bg);
+  font-family: solidMono;
+  font-size: 90%;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(194, 194, 194, 0), #c2c2c2, rgba(194, 194, 194, 0));
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: firaCodeVF;
+  color: var(--heading-txt);
+}
+
+h1 {
+  color: var(--highlight-txt);
+  font-family: solidMono;
+  font-weight: normal;
+  font-size: 120%;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--navbar-title-bg);
+  padding: 1.25em 0.5em;
+  margin: 0em;
+}
+
+h2 {
+  margin: 1em 0em 0.5em 0em;
+  font-weight: 600;
+  font-size: 140%;
+}
+
+h3 {
+  margin: 1em 0em 0.5em 0em;
+  font-weight: 550;
+  font-size: 130%;
+}
+
+h4 {
+  margin: 1em 0em 0.5em 0em;
+  font-weight: 500;
+  font-size: 120%;
+}
+
+h5 {
+  margin: 1em 0em 0.5em 0em;
+  font-weight: 450;
+  font-size: 110%;
+}
+
+h6 {
+  margin: 1em 0em 0.5em 0em;
+  font-weight: 400;
+  font-size: 105%;
+}
+
+blockquote {
+  font-family: solidMono;
+  padding: 1em 2em;
+  background-image: linear-gradient(to right, var(--blockquote-bg-start), var(--blockquote-bg-end));
+  border-left: 0.25em solid var(--blockquote-border);
+}
+
+.comment {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.highlight {
+  color: var(--highlight-txt);
+  background-color: var(--highlight-bg);
+  border-left: 1px solid var(--highlight-txt);
+  padding: 1em;
+}
+
+p .wip {
+  padding: 1em;
+}
+
+p {
+  line-height: 150%;
+}
+
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RFD_icons;
+  src: url("../assets/RFD-Icon-Bundle.ttf");
+}
+
+.font_icon {
+  font-family: RFD_icons;
+  font-size: 100%;
+  color: var(--body-txt);
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: RFD_icons !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: none !important;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-eye_filled_day:before {
+  content: "\e900";
+}
+
+.icon-eye_filled_night:before {
+  content: "\e901";
+}
+
+.icon-eye_outlined_day:before {
+  content: "\e902";
+}
+
+.icon-eye_outlined_night:before {
+  content: "\e903";
+}
+
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: solidMono, monospace;
+  font-size: 100%;
+  padding: 1em;
+  display: inline-block;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition-duration: 0.15s;
+}
+
+a:focus {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+a:focus:not(:focus-visible) {
+  color: var(--link);
+  text-shadow: none;
+}
+
+a:focus-visible {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+a:active {
+  color: var(--link-active);
+  text-shadow: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow);
+}
+
+.link_nav {
+  color: var(--nav-txt);
+  font-family: "Lab Mono Web", sans-serif;
+  font-weight: normal;
+  transition-duration: 0.1s;
+  padding: 1em;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.link_nav:focus {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+.link_nav:focus:not(:focus-visible) {
+  color: var(--link);
+  text-shadow: none;
+}
+
+.link_nav:focus-visible {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+.link_nav:hover {
+  color: var(--link-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+}
+
+.link_nav:active {
+  color: var(--link-active);
+  text-shadow: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow);
+}
+
+.link_nav:focus {
+  box-shadow: 0 0 5px var(--link-focus-shadow);
+}
+
+.link_nav:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.link_nav:focus-visible {
+  box-shadow: 0 0 5px var(--link-focus-shadow);
+}
+
+.link_nav:hover {
+  color: var(--nav-txt-hover);
+  text-shadow: 0px 0px 5px var(--link-hover-glow);
+  border-image: linear-gradient(to right, rgba(0, 255, 157, 0), rgba(0, 199, 123, 0.2) 20%, var(--highlight-txt), rgba(0, 199, 123, 0.2) 80%, rgba(0, 255, 157, 0)) 1;
+}
+
+.link_nav:active {
+  text-shadow: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow);
+  border-image: linear-gradient(to right, rgba(0, 255, 157, 0), var(--highlight-txt) 30%, #fff, var(--highlight-txt) 70%, rgba(0, 255, 157, 0)) 1;
+}
+
+button[class^="icon-"],
+button[class*=" icon-"] {
+  color: var(--icon);
+}
+
+button[class^="icon-"]:focus,
+button[class*=" icon-"]:focus {
+  color: var(--icon-hover);
+  text-shadow: 0px 0px 2px var(--link-hover-glow);
+}
+
+button[class^="icon-"]:focus:not(:focus-visible),
+button[class*=" icon-"]:focus:not(:focus-visible) {
+  color: var(--icon);
+  text-shadow: none;
+}
+
+button[class^="icon-"]:focus-visible,
+button[class*=" icon-"]:focus-visible {
+  color: var(--icon-hover);
+  text-shadow: 0px 0px 2px var(--link-hover-glow);
+}
+
+button[class^="icon-"]:hover,
+button[class*=" icon-"]:hover {
+  color: var(--icon-hover);
+  text-shadow: 0px 0px 2px var(--link-hover-glow);
+}
+
+button[class^="icon-"]:active,
+button[class*=" icon-"]:active {
+  color: var(--icon-active);
+  text-shadow: 0px 0px 2px var(--link-hover-glow);
+}
+
+#header_id .link_nav {
+  border-width: 0px 0px 1px 0px;
+}
+
+#footer_id .link_nav {
+  border-width: 1px 0px 0px 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  .link_button {
+    display: block;
+    padding: 0.6em;
+  }
+}
+
+.link_inline {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 199, 123, 0);
+}
+
+.link_inline:focus {
+  text-decoration-color: var(--link-hover);
+}
+
+.link_inline:focus:not(:focus-visible) {
+  text-decoration-color: var(--link);
+}
+
+.link_inline:focus-visible {
+  text-decoration-color: var(--link-hover);
+}
+
+.link_inline:hover {
+  text-decoration-color: var(--link-hover);
+}
+
+.link_inline:active {
+  text-decoration-color: var(--link-active);
+}
+
+.linkblock a {
+  display: block;
+  margin: 0em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.linkblock a:focus {
+  background-color: var(--link-background);
+}
+
+.linkblock a:focus:not(:focus-visible) {
+  background-color: none;
+}
+
+.linkblock a:focus-visible {
+  background-color: var(--link-background);
+}
+
+.linkblock a:hover {
+  background-color: var(--link-background);
+}
+
+.linkblock a:active {
+  background-color: var(--link-background);
+}
+
+.linkblock a:focus {
+  box-shadow: 0 0 5px var(--link-focus-shadow);
+}
+
+.linkblock a:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.linkblock a:focus-visible {
+  box-shadow: 0 0 5px var(--link-focus-shadow);
+}
+
+.link_desc_bottom {
+  margin-top: 0em;
+}
+
+.link_ext::before,
+.link_publication::before {
+  content: "🡒 ";
+  display: inline;
+}
+
+.link_da,
+.link_fa,
+.link_redlist,
+.link_rdb,
+.link_wikipedia {
+  display: inline-block;
+}
+
+.link_da::before {
+  content: "[🡒 DA]";
+}
+
+.link_fa::before {
+  content: "[🡒 FA]";
+}
+
+.link_redlist::before {
+  content: "[🡒 RL]";
+}
+
+.link_rdb::before {
+  content: "[🡒 RDB]";
+}
+
+.link_wikipedia::before {
+  content: "[🡒 W]";
+}
+
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.checkbox_label {
+  padding: 2em;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 10px;
+  transition-duration: 0.2s;
+  color: var(--body-txt);
+  cursor: pointer;
+}
+
+input:checked + .checkbox_label {
+  color: #fff;
+  text-shadow: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow);
+}
+
+input:hover + .checkbox_label {
+  color: #fff;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+/* radio buttons */
+/* I would not manage to deal with these without https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling */
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid #2e4d6b;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  outline: none;
+}
+
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: #39b197;
+  font-size: 1.2em;
+  transform: translate(3px, 3px);
+  -webkit-transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+}
+
+input[type="radio"]:checked::before {
+  opacity: 0.8;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  color: var(--highlight-txt);
+  vertical-align: -7px;
+}
+
+input[type="checkbox"]::before {
+  content: "✔";
+  position: absolute;
+  font-size: 1.2em;
+  right: 3px;
+  top: -0.1em;
+  visibility: hidden;
+}
+
+input[type="checkbox"]:checked::before {
+  visibility: visible;
+}
+
+/* not tested */
+input[type="checkbox"]:disabled {
+  border-color: gray;
+  color: gray;
+}
+
+input[type="text"] {
+  color: var(--body-txt);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid;
+  border-color: rgba(255, 255, 255, 0.6);
+  font-family: "Lab Mono Web", sans-serif;
 }
