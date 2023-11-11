@@ -1,0 +1,748 @@
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  flex-direction: column;
+}
+
+h1 {
+  padding-left: 256px;
+  padding-right: 368px;
+}
+
+#column_left {
+  height: 100%;
+  width: 256px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+#column_center {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  margin-left: 256px;
+  margin-right: 400px;
+}
+
+#content_id {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textbg {
+  width: 100%;
+  padding-left: 0em;
+  padding-right: 0em;
+  flex-grow: 1;
+}
+
+#column_right {
+  height: 100%;
+  width: 400px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  padding: 0em 1em;
+  background-color: #111;
+}
+
+.ark_sidenav {
+  height: 100%;
+  width: 100%;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#arkcalc_credits {
+  text-align: center;
+  font-size: 60%;
+  padding: 1em 1em;
+}
+
+#arkcalc_credits p {
+  padding: 0.2em 0.5em;
+  margin: 0px;
+}
+
+#arkcalc_help {
+  background-color: var(--block-bg);
+  display: none;
+  font-size: 90%;
+  padding: 1em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+}
+
+#arkcalc_help h2 {
+  margin: 0em 0em 0.5em 0em;
+}
+
+.arkcalc_help_close {
+  float: right;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.arkcalc_help_footer {
+  font-size: 60%;
+  text-align: center;
+}
+
+.ark_output_counter_cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.ark_output_counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+
+#ark_prize_total,
+#ark_prize_remaining {
+  font-size: 300%;
+}
+
+#arkcalc_output {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#ark_output_list {
+  list-style-type: none;
+  overflow-y: scroll;
+  flex-grow: 1;
+  margin: 1em 0em 1em 1em;
+  padding: 0em;
+}
+
+#ark_reset_all,
+#ark_copy_clipboard,
+#ark_open_help {
+  cursor: pointer;
+  background-color: var(--block-bg);
+  transition: all 0.3s;
+}
+
+#ark_reset_all:hover,
+#ark_copy_clipboard:hover,
+#ark_open_help:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--highlight-txt-white);
+}
+
+.ark_b_remove {
+  content: "remove";
+  padding: 0em 0.5em 0em 1em;
+  cursor: pointer;
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  font-size: 75%;
+  transition: color 0.5s;
+}
+
+.ark_b_remove:hover {
+  color: var(--highlight-txt-white);
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#ark_tables_offers {
+  width: 100%;
+}
+
+#ark_species_table,
+#ark_resource_table,
+#ark_item_table {
+  width: 100%;
+}
+
+.ark_b_tab {
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  width: 100%;
+  font-size: 90%;
+  transition: padding-left 0.5s;
+}
+
+.ark_b_tab:hover {
+  padding-left: 1em;
+  background-color: var(--block-bg);
+  color: var(--highlight-txt-white);
+}
+
+.ark_b_filter {
+  padding: 0.2em 0.5em 0.2em 1em;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  width: 100%;
+  font-size: 75%;
+  transition: padding-left 0.5s;
+}
+
+.ark_b_filter:hover {
+  padding-left: 1.5em;
+  background-color: var(--block-bg);
+  color: var(--highlight-txt-white);
+}
+
+.ark_table_header {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+}
+
+.ark_header_name {
+  flex-grow: 1;
+  margin-left: 2.5em;
+}
+
+.ark_header_stack,
+.ark_header_quality {
+  width: 5em;
+}
+
+.ark_table_header button {
+  padding: 0px;
+}
+
+.table_number,
+.ark_dino_prize,
+.ark_res_stack,
+.ark_res_cost,
+.ark_item_quality,
+.ark_item_cost {
+  text-align: center;
+  width: 3em;
+}
+
+.ark_species_row,
+.ark_resource_row,
+.ark_item_row {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  align-content: stretch;
+  background-color: var(--block-bg);
+  margin: 0.5em 2em 0em 2em;
+  padding: 0.5em;
+  transition: all 0.3s;
+}
+
+.ark_species_row:hover,
+.ark_resource_row:hover,
+.ark_item_row:hover {
+  color: var(--highlight-txt-white);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ark_res_name {
+  flex-grow: 1;
+}
+
+.show {
+  display: flex;
+}
+
+.ark_item_name {
+  flex-grow: 1;
+}
+
+.ark_dino_name {
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.ark_add,
+.ark_remove {
+  cursor: pointer;
+  padding: 0em 0.5em;
+  font-family: firaCodeVF;
+}
+
+.ark_add::after {
+  content: "\002B";
+}
+
+.ark_note {
+  width: 100%;
+  margin-top: 0.5em;
+  font-size: 80%;
+  padding: 0.5em 1em;
+  background-color: #191919;
+}
+
+.synapsid .ark_dino_name::before {
+  content: "S";
+  background-color: rgba(171, 105, 19, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.na_dinosaur .ark_dino_name::before {
+  content: "D";
+  background-color: rgba(0, 255, 124, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.bird .ark_dino_name::before {
+  content: "B";
+  background-color: rgba(137, 136, 133, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.nd_reptile .ark_dino_name::before {
+  content: "R";
+  background-color: rgba(175, 255, 0, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.invertebrate .ark_dino_name::before {
+  content: "I";
+  background-color: rgba(191, 23, 205, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.fish .ark_dino_name::before {
+  content: "F";
+  background-color: rgba(30, 105, 203, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.basic .ark_res_category::after {
+  content: "B";
+  background-color: rgba(59, 224, 12, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.derived .ark_res_category::after {
+  content: "D";
+  background-color: rgba(127, 163, 169, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.spawnable .ark_res_category::before {
+  content: "S";
+  background-color: rgba(255, 191, 0, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.non-spawnable .ark_res_category::before {
+  content: "N";
+  background-color: rgba(230, 56, 255, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.weapon .ark_item_name::before {
+  content: "W";
+  background-color: rgba(255, 36, 0, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.ammunition .ark_item_name::before {
+  content: "B";
+  background-color: rgba(0, 255, 195, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.armor .ark_item_name::before {
+  content: "A";
+  background-color: rgba(158, 161, 162, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.saddle .ark_item_name::before {
+  content: "S";
+  background-color: rgba(207, 129, 45, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.other .ark_item_name::before {
+  content: "O";
+  background-color: rgba(66, 207, 37, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+.dungeon {
+  box-shadow: 0 0 0.5em #9100b0;
+}
+
+.alpha {
+  box-shadow: 0 0 0.5em #ff2400;
+}
+
+.spoiling {
+  box-shadow: 0 0 0.5em aqua;
+}
+
+.res_special {
+  box-shadow: 0 0 0.5em #ffb300;
+}
+
+.alpha .ark_dino_name::after {
+  content: "ALPHA";
+  font-style: normal;
+  font-weight: normal;
+  background-color: #ff00007d;
+  border-radius: 1em;
+  font-size: 80%;
+  padding: 0.2em 0.8em 0.1em 0.5em;
+  margin: auto 0.75em;
+}
+
+.spoiling .ark_res_name::after {
+  content: "spoils";
+  font-style: normal;
+  background-color: rgba(0, 204, 255, 0.5);
+  border-radius: 1em;
+  font-size: 80%;
+  padding: 0.2em 0.8em 0.2em 0.5em;
+  margin: auto 0.75em;
+}
+
+.unavailable {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.unavailable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-type="dino"]::before {
+  content: "C";
+  background-color: rgba(132, 209, 18, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+[data-type="res"]::before {
+  content: "R";
+  background-color: rgba(160, 110, 57, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+[data-type="item"]::before {
+  content: "I";
+  background-color: rgba(113, 130, 156, 0.3);
+  font-style: normal;
+  color: white;
+  border-radius: 1em;
+  font-size: 60%;
+  font-family: solidMono;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin: auto 0.5em auto 0.25em;
+}
+
+#ark_tables {
+  display: flex;
+  flex-direction: row;
+}
+
+#ark_tables_offers {
+  display: flex;
+  flex-direction: row;
+}
+
+.ark_table {
+  display: none;
+  -webkit-animation: fadeEffect 0.8s;
+  animation: fadeEffect 0.8s;
+}
+
+.ark_species_row,
+.ark_resource_row,
+.ark_item_row {
+  -webkit-animation: fadeEffect 0.8s;
+  animation: fadeEffect 0.8s;
+}
+
+.ark_header_cost {
+  width: 9em;
+  text-align: center;
+}
+
+#ark_popup_container {
+  display: flex;
+  padding: 0em 5em;
+  width: 100%;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  align-items: stretch;
+  position: fixed;
+  z-index: 4;
+}
+
+.ark_popup {
+  display: none;
+  background-color: black;
+  color: var(--highlight-txt-white);
+  box-shadow: 0 0 1.5em var(--highlight-txt-white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  -webkit-animation: fadeinout 2s ease-in-out forwards;
+  animation: fadeinout 2s ease-in-out forwards;
+}
+
+.ark_popup_show {
+  display: block;
+}
+
+@-webkit-keyframes fadeinout {
+  0%, 100% {
+    opacity: 0;
+  }
+  15%, 75% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeinout {
+  0%, 100% {
+    opacity: 0;
+  }
+  15%, 75% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  #column_right {
+    position: static;
+    width: 100%;
+    padding-left: 272px;
+  }
+  h1 {
+    padding-right: 0px;
+  }
+  #column_center {
+    margin-right: 0px;
+  }
+  .ark_b_tab {
+    padding: 0.5em 1em;
+    font-size: 95%;
+  }
+  .ark_b_tab:hover {
+    padding-left: 2em;
+  }
+  .ark_b_filter {
+    padding: 0.5em 1em 0.5em 1.5em;
+    font-size: 80%;
+  }
+  .ark_b_filter:hover {
+    padding-left: 2.5em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #column_right {
+    padding-left: 1em;
+    height: unset;
+  }
+  #column_left {
+    position: static;
+    width: 100%;
+    height: unset;
+  }
+  .textbg {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  h1 {
+    padding-left: 0px;
+  }
+  #column_center {
+    margin-left: 0px;
+  }
+  .ark_b_tab {
+    padding: 0.5em 1.5em;
+    font-size: 100%;
+  }
+  .ark_b_tab:hover {
+    padding-left: 2em;
+  }
+  .ark_b_filter {
+    padding: 0.5em 1.5em 0.5em 2.5em;
+    font-size: 90%;
+  }
+  .ark_b_filter:hover {
+    padding-left: 3.5em;
+  }
+  .ark_species_row {
+    margin: 0.5em 1em 0em 1em;
+  }
+}

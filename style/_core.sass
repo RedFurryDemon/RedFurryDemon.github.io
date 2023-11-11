@@ -4,10 +4,34 @@
 //RFD, remember to check this for compatibility
 //https://stackoverflow.com/questions/7961721/how-do-i-install-a-custom-font-on-an-html-site
 
-$f_txt: solidMono, monospace
+@font-face
+	font-family: eirian
+	src: url("../assets/eirian.regular.otf")
+
+@font-face
+	font-family: sonoVariable
+	src: url("../assets/SonoVariable.woff2") format("woff2-variations")
+
+@font-face
+	font-family: firaCodeVF
+	src: url('../assets/FiraCode-VF.woff2') format('woff2-variations')
+	font-weight: 300 700
+	font-style: normal
+
+@font-face
+	font-family: "Lab Mono Web"
+	src: url( '../assets/labmono-regular-web.woff2' ) format( 'woff2' )
+	font-weight: normal
+	font-style: normal
+
+$f_txt: "Lab Mono Web", sans-serif
+$f_link_nav: "Lab Mono Web", sans-serif
 $f_button: solidMono, monospace //also Exo 2 Light is great
-//$f_maintitle: cinzel
-//$f_maintitle: "Solid Mono", monospace
+$f_blockquote: solidMono
+$f_pre: solidMono
+$f_heading_main: solidMono
+$f_heading: firaCodeVF
+$f_maintitle: solidMono, monospace
 //$f_fancy_1: whisper
 
 $f_size_txt: 100%
@@ -15,23 +39,75 @@ $f_size_button: 100%
 
 $c_bg_main: hsl(0, 0%, 8%)
 //various opacity of pure black
+$c_bg_02a: rgba(0,0,0,0.2)
 $c_bg_03a: rgba(0,0,0,0.3)
 $c_bg_04a: rgba(0,0,0,0.4)
 $c_bg_05a: rgba(0,0,0,0.5)
 //green bg
-$c_bg_highlight: hsla(157, 100%, 39%, 0.2)
+$c_bg_highlight02a: hsla(157, 100%, 39%, 0.2)
 $c_bg_highlight01a: hsla(157, 100%, 39%, 0.1)
+$c_bg_highlight00a: hsla(157, 100%, 39%, 0)
+$c_bg_highlight_dark: rgba(0, 83, 64, 0.2)
+
+//purple bg
+$c_bg_purple_light: rgb(72, 67, 153)
+$c_bg_purple_dark: rgb(23, 12, 91)
+
+$c_shadow01a_light: hsla(0, 0%, 0%, 0.1)
 
 $c_hr1: #c2c2c2
 $c_hr2: hsla(0, 0%, 76%, 0.0)
 
-$c_txt: #c2c2c2 //hsl(0, 0%, 76%)
-$c_button: #c2c2c2 //hsl(0, 0%, 76%)
-$c_txt_darker1: #999999 //hsl(0, 0%, 60%)
+$c_txt: hsla(0, 0%, 100%, 0.76)
+$c_button: hsla(0, 0%, 100%, 0.76)
+$c_txt_darker1: hsla(0, 0%, 100%, 0.6)
+$c_txt_white06a: hsla(0, 0%, 100%, 0.6)
 
-$c_highlight_main: #00c77b //hsl(157, 100%, 39%)
-$c_highlight_bright: #d3d3d3
+$c_highlight_main: hsla(157, 100%, 50%, 0.8)//#00c77b
+$c_highlight_main00a: hsla(157, 100%, 50%, 0.0)
+$c_highlight_bright: hsla(0, 0%, 100%, 0.85)
 $c_highlight_white: #fff
+
+$c_txt_wip: #ae00ff
+$c_bg_wip: #ae00ff3b
+
+$ts_nav_glow_hover: 0px 0px 5px var(--link-hover-glow)
+$ts_nav_glow_active: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow)
+
+$ts_icon_glow_hover: 0px 0px 2px var(--link-hover-glow)
+
+$ts_text_glow_hover: 0px 0px 5px var(--link-hover-glow)
+$ts_text_glow_active: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow)
+
+$ts_input_glow_checked: 0px 0px 10px var(--link-active-glow), 0px 0px 5px var(--link-active-glow)
+$ts_input_glow_hover: 0px 0px 5px $c_highlight_white
+
+//gradients
+
+$gradient_line_border_hover: linear-gradient(to right, $c_highlight_main00a, $c_bg_highlight02a 20%, var(--highlight-txt), $c_bg_highlight02a 80%, $c_highlight_main00a)
+
+$gradient_line_border_active: linear-gradient(to right, $c_highlight_main00a, var(--highlight-txt) 30%, $c_highlight_white, var(--highlight-txt) 70%, $c_highlight_main00a)
+
+$gradient_line_highlightmain_active: linear-gradient(to right, $c_highlight_main00a, var(--highlight-txt) 30%, $c_highlight_white, var(--highlight-txt) 70%, $c_highlight_main00a)
+
+$gradient_line_underline_focus: linear-gradient(transparent 1.06em, var(--link-hover-glow), $c_highlight_white, var(--link-hover-glow))
+
+//light mode
+
+$c_bg_main_light: #ffffff
+//hsl(210, 10%, 98%)
+$c_txt_light: hsla(0, 0%, 0%, 0.8)
+$c_textshadow_light: hsla(0, 0%, 0%, 0.5)
+
+$c_bg_navbar_top_light: hsl(205, 50%, 65%)
+$c_bg_navbar_bottom_light: hsl(205, 50%, 65%)
+$c_bg_navbar_title_light: hsl(205, 50%, 65%)
+$c_navshadow_light: rgba(0, 0, 0, 0.5)
+
+$c_highlight_blue: hsl(214, 100%, 44%)
+//hsl(204, 100%, 50%)
+
+//rwd
 
 $rwd_phone: 600px
 $rwd_tablet: 1200px
@@ -59,6 +135,58 @@ $rwd_tablet: 1200px
 //header_id, content_id, footer_id
 @mixin body_child
 	margin: 0px
-	flex-grow: 0
 	width: 100%
-	box-sizing: border-box
+
+@mixin focus_box
+	box-shadow: 0 0 5px var(--link-focus-shadow)
+
+@mixin focus_box_clear
+	box-shadow: none
+
+@mixin link_text_highlight
+	&:focus
+		color: var(--link-hover)
+		text-shadow: $ts_text_glow_hover
+	&:focus:not(:focus-visible)
+		color: var(--link)
+		text-shadow: none
+	&:focus-visible
+		color: var(--link-hover)
+		text-shadow: $ts_text_glow_hover
+	&:hover
+		color: var(--link-hover)
+		text-shadow: $ts_text_glow_hover
+	&:active
+		color: var(--link-active)
+		text-shadow: $ts_text_glow_active
+
+@mixin focus_box_full
+	&:focus
+		@include focus_box
+	&:focus:not(:focus-visible)
+		@include focus_box_clear
+	&:focus-visible
+		@include focus_box
+
+@mixin link_dark_background
+	&:focus
+		background-color: var(--link-background)
+	&:focus:not(:focus-visible)
+		background-color: none
+	&:focus-visible
+		background-color: var(--link-background)
+	&:hover
+		background-color: var(--link-background)
+	&:active
+		background-color: var(--link-background)
+
+//for inline links only
+//works with multiple lines
+//NOTE - first gradient value must be tied to font size!
+@mixin link_focus_underline
+	&:focus
+		background-image: $gradient_line_underline_focus
+	&:focus:not(:focus-visible)
+		background-image: none
+	&:focus-visible
+		background-image: $gradient_line_underline_focus

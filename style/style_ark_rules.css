@@ -26,3 +26,34 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.ark_rule_row {
+  background-color: black;
+  padding: 1em;
+  margin-bottom: 0.5em;
+}
+
+.ark_rule_row:last-child {
+  color: pink !important;
+}
+
+.ark_rule_text {
+  color: var(--body-txt);
+}
+
+.ark_rule_text p {
+  margin: 0em;
+  margin-bottom: 0.5em;
+}
+
+.ark_rule_note {
+  color: var(--body-txt-darker);
+  font-size: 80%;
+  padding: 0.25em;
+}
+
+.ark_rule_note p {
+  font-size: 90%;
+  margin: 0em;
+  margin-top: 0.25em;
+}

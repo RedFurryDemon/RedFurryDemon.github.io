@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style/style__main.css">
+	<link rel="stylesheet" type="text/css" href="style/style_ark_rules.css">
+
+	<title>RFD's Scratchpad</title>
+	<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+	<link id="theme_css" rel="stylesheet" type="text/css" href="style/theme_dark.css">
+
+	<script src="scripts/ark_data_rules.js"></script>
+
+	<!--no defer!
+	<script src="scripts/shared.js"></script>-->
+
+</head>
+
+<body>
+
+	<h1>server rules</h1>
+
+	<div id="content_id">
+
+		<div class="textbg">
+
+			<div id="ark_rule_table">
+			</div>
+
+		</div>
+		<!--
+			<div id="footer_id">
+				<div id="arkcalc_credits">
+					<p>coding: RFD; testing: Amare46; sorting script: Ron Valstar</p>
+					<p>license: GNU GPL 3.0</p>
+				</div>
+			</div>
+			-->
+	</div>
+
+	<script>
+
+		function showRules() {
+			for (let i = 0; i < rule_list.length; i++) {
+
+				let ark_rule_text_div = document.createElement("div");
+				let ark_rule_note_div = document.createElement("div");
+
+				ark_rule_text_div.classList.add("ark_rule_text");
+				ark_rule_note_div.classList.add("ark_rule_note");
+
+				let ark_rule_row = document.createElement("div");
+				ark_rule_row.classList.add("ark_rule_row");
+
+				for (let j = 0; j < rule_list[i][0].length; j++) {
+					let tn_rule = document.createTextNode(rule_list[i][0][j]);
+					let ark_rule_text = document.createElement("p");
+					ark_rule_text.appendChild(tn_rule);
+					ark_rule_text_div.appendChild(ark_rule_text);
+				}
+
+				for (let k = 0; k < rule_list[i][1].length; k++) {
+					let tn_note = document.createTextNode(rule_list[i][1][k]);
+					let ark_rule_note = document.createElement("p");
+					ark_rule_note.appendChild(tn_note);
+					ark_rule_note_div.appendChild(ark_rule_note);
+				}
+
+				ark_rule_row.append(ark_rule_text_div, ark_rule_note_div);
+
+				document.getElementById("ark_rule_table").append(ark_rule_row);
+			}
+
+		}
+
+		showRules();
+	</script>
+
+</body>
+
+</html>

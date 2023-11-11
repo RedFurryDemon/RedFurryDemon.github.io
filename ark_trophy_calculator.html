@@ -6,14 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" href="style/style__main.css">
-	<link rel="stylesheet" type="text/css" href="style/style_app_ark_trophy_calc.css">
+	<link rel="stylesheet" type="text/css" href="style/style_ark_trophy_calc.css">
 
 	<title>RFD's Scratchpad</title>
 	<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
 	<link id="theme_css" rel="stylesheet" type="text/css" href="style/theme_dark.css">
 
-	<script src="scripts/ark_calc_data.js"></script>
+	<script src="scripts/ark_data_trophy_calc.js"></script>
 
 	<script src="scripts/lib/tinysort.js"></script>
 	<script>tinysort.defaults.console = false;</script>
@@ -25,11 +25,12 @@
 
 <body>
 
-<div id="ark_popup_container">
-	<p class="ark_popup" id="ark_popup_not_enough">not enough RPD to purchase this</p>
-	<p class="ark_popup" id="ark_popup_below_0">the cost exceeds the amount of RPD available</p>
-	<p class="ark_popup" id="ark_popup_copied">copied to clipboard</p>
-</div>
+	<div id="ark_popup_container">
+		<p class="ark_popup" id="ark_popup_not_enough">not enough RPD to purchase this</p>
+		<p class="ark_popup" id="ark_popup_below_0">the cost exceeds the amount of RPD available</p>
+		<p class="ark_popup" id="ark_empty_list">there is no data to copy</p>
+		<p class="ark_popup" id="ark_popup_copied">copied to clipboard</p>
+	</div>
 
 	<h1>ARK trading calculator</h1>
 
@@ -73,8 +74,19 @@
 	<div id="column_right">
 		<div id="arkcalc_output">
 
-			<p>Total: <span id="ark_prize_total">0</span> RPD</p>
-			<p>Remaining: <span id="ark_prize_remaining">0</span> RPD</p>
+			<div class="ark_output_counter_cont">
+				<div class="ark_output_counter">
+					<span>TOTAL</span>
+					<span id="ark_prize_total">0</span>
+					<span>RPD</span>
+				</div>
+				<div class="ark_output_counter">
+					<span>REMAINING</span>
+					<span id="ark_prize_remaining">0</span>
+					<span>RPD</span>
+				</div>
+			</div>
+
 			<button id="ark_reset_all" onclick="resetArkCalc()">reset</button>
 
 			<ul id="ark_output_list"></ul>
@@ -151,7 +163,7 @@
 		let prize_expected = 0;
 
 		let sorting_data = {
-			ark_dino_name: true,
+			ark_dino_name: false,
 			ark_dino_prize: false,
 			ark_res_name: false,
 			ark_res_stack: false,
@@ -165,8 +177,9 @@
 		//counting orders
 
 		let count_dino = [];
-		let count_resource = [];
-		let count_item = [];
+		let count_dino_new = Array(species_list.length).fill(0);
+		let count_resource = Array(resource_list.length).fill(0);
+		let count_item = Array(item_list.length).fill(0);
 
 		function arkSort(attr, table_id) {
 			//check whether to sort ascending or descending
@@ -179,27 +192,57 @@
 			sorting_data[attr] = (sorting_data[attr] == false) ? true : false;
 		}
 
-function removePopup(id) {
-  var popup = document.getElementById(id);
-  popup.classList.remove("ark_popup_show");
-}
+		function removePopup(id) {
+			var popup = document.getElementById(id);
+			popup.classList.remove("ark_popup_show");
+		}
 
-function showPopup(id) {
-  var popup = document.getElementById(id);
-  popup.classList.add("ark_popup_show");
-  setTimeout(function () {removePopup(id);}, 2000);
-}
+		function showPopup(id) {
+			var popup = document.getElementById(id);
+			popup.classList.add("ark_popup_show");
+			setTimeout(function () {removePopup(id);}, 2000);
+		}
 
-function alertPrize() {
-	showPopup('ark_popup_not_enough');
-	prize_expected = prize_remaining;
-}
+		function alertPrize() {
+			showPopup('ark_popup_not_enough');
+			prize_expected = prize_remaining;
+		}
 
 		function updatePrize() {
+			//rounding here is just to be safe
+			prize_remaining = Math.floor(prize_remaining);
 			document.getElementById("ark_prize_total").innerHTML = prize_total;
 			document.getElementById("ark_prize_remaining").innerHTML = prize_remaining;
 			prize_expected = prize_remaining;
 			console.log("prize_expected: " + prize_expected);
+		}
+
+		function printDinoNew() {
+			document.getElementById("ark_output_list").replaceChildren();
+			let dino_count = 0;
+			let res_count = 0;
+			let item_count = 0;
+			for (let i = 0; i < count_dino_new.length; i++) {
+				dino_count = count_dino_new[i];
+				if (dino_count > 0) {
+					let output_name = species_list[i].name_test;
+					addOutputRow(output_name, datatype = "dino", dataindex = i, count_dino_new[i], species_list[i].prize);
+					console.log("index: " + i + ", count: " + count_dino_new[i]);
+				}
+			}
+			for (let j = 0; j < count_resource.length; j++) {
+				res_count = count_resource[j];
+				if (res_count > 0) {
+					addOutputRow(resource_list[j].name, datatype = "res", dataindex = j, count_resource[j], resource_list[j].cost);
+				}
+			}
+			for (let k = 0; k < count_item.length; k++) {
+				item_count = count_item[k];
+				if (item_count > 0) {
+					//let output_count = count_res[j] * resource_list[j].stack
+					addOutputRow(item_list[k].name, datatype = "item", dataindex = k, count_item[k], Math.floor(item_list[k].cost));
+				}
+			}
 		}
 
 		function resetArkCalc() {
@@ -208,6 +251,7 @@ function alertPrize() {
 			prize_expected = 0;
 			updatePrize();
 			count_dino = [];
+			count_dino_new = [];
 			count_resource = [];
 			count_item = [];
 			document.getElementById("ark_output_list").replaceChildren();
@@ -215,7 +259,8 @@ function alertPrize() {
 
 		function showSpecies() {
 			for (let i = 0; i < species_list.length; i++) {
-				let tn_name = document.createTextNode(species_list[i].species_name);
+				//let tn_name = document.createTextNode(species_list[i].species_name);
+				let tn_name = document.createTextNode(species_list[i].name_test);
 				let tn_prize = document.createTextNode(species_list[i].prize);
 
 				let ark_dino_name = document.createElement("div");
@@ -229,11 +274,11 @@ function alertPrize() {
 				let ark_species_row = document.createElement("div");
 				ark_species_row.classList.add("ark_species_row");
 
-/*
-				if (species_list[i].vernacular_name) {
-					ark_species_row.setAttribute("title", species_list[i].vernacular_name);
-				}
-*/
+				/*
+								if (species_list[i].vernacular_name) {
+									ark_species_row.setAttribute("title", species_list[i].vernacular_name);
+								}
+				*/
 				//to-do: clean up the prize functions
 
 				ark_dino_add.classList.add("ark_add");
@@ -249,7 +294,7 @@ function alertPrize() {
 				}
 
 				if (species_list[i].note) {
-					ark_species_row.setAttribute("title", species_list[i].note);
+					//ark_species_row.setAttribute("title", species_list[i].note);
 					let tn_note = document.createTextNode(species_list[i].note);
 					let ark_dino_note = document.createElement("div");
 					ark_dino_note.appendChild(tn_note);
@@ -297,6 +342,14 @@ function alertPrize() {
 					ark_res_row.classList.add(resource_list[i].category[j]);
 				}
 
+				if (resource_list[i].note) {
+					let tn_note = document.createTextNode(resource_list[i].note);
+					let ark_res_note = document.createElement("div");
+					ark_res_note.appendChild(tn_note);
+					ark_res_note.classList.add("ark_note");
+					ark_res_row.appendChild(ark_res_note);
+				}
+
 				document.getElementById("ark_resource_table").append(ark_res_row);
 			}
 
@@ -306,21 +359,21 @@ function alertPrize() {
 		function showItems() {
 
 			for (let i = 0; i < item_list.length; i++) {
-/*
-let name = "";
-
-if (item_list[i].category.includes("ammunition")) {
-name = item_list[i].name + " (x" + item_list[i].stack + ")"
-			} else {
-				name = item_list[i].name;
-			}
-
-				let tn_item_name = document.createTextNode(name);
-				*/
+				/*
+				let name = "";
+				
+				if (item_list[i].category.includes("ammunition")) {
+				name = item_list[i].name + " (x" + item_list[i].stack + ")"
+							} else {
+								name = item_list[i].name;
+							}
+				
+								let tn_item_name = document.createTextNode(name);
+								*/
 				let tn_item_name = document.createTextNode(item_list[i].name);
 
 				let tn_item_quality = document.createTextNode(item_list[i].quality);
-				let tn_item_cost = document.createTextNode(item_list[i].cost);
+				let tn_item_cost = document.createTextNode(Math.floor(item_list[i].cost));
 
 				let ark_item_name = document.createElement("div");
 				let ark_item_quality = document.createElement("div");
@@ -347,25 +400,32 @@ name = item_list[i].name + " (x" + item_list[i].stack + ")"
 					ark_item_row.classList.add(item_list[i].category[j]);
 				}
 
+				if (item_list[i].note) {
+					let tn_note = document.createTextNode(item_list[i].note);
+					let ark_item_note = document.createElement("div");
+					ark_item_note.appendChild(tn_note);
+					ark_item_note.classList.add("ark_note");
+					ark_item_row.appendChild(ark_item_note);
+				}
+
 				document.getElementById("ark_item_table").append(ark_item_row);
 
 			}
 		}
 
+		//used
 		function count_add_dino(i) {
-			count_dino.push(i);
-			console.log(count_dino);
+			console.log(typeof (i));
+			count_dino_new[i] += 1;
+			console.log(count_dino_new);
+			//console.log(count_dino);
 			prize_total += species_list[i].prize;
 			prize_remaining += species_list[i].prize;
 			updatePrize();
-			let output_name = species_list[i].species_name;
-			if (species_list[i].category.includes("alpha")) {
-output_name = output_name + " (ALPHA)"
-			}
-			addOutputRow(output_name, datatype = "dino", dataindex = i);
+			printDinoNew();
 		}
 
-
+//unused
 		function count_remove_dino(e) {
 			/*
 				let removed_index = count_dino.lastIndexOf(i);
@@ -377,12 +437,11 @@ output_name = output_name + " (ALPHA)"
 				//this.parentElement.querySelector(".ark_counter").innerHTML--;
 				*/
 			//count_dino.push(i);
-			let data_i = this.parentElement.dataset.dataindex
+			let data_i = this.parentElement.dataset.index;
 			let removed_index = count_dino.lastIndexOf(data_i);
-			//RFD - debug this! returns undefined, pops the array
-			console.log(data_i + " is found at index " + removed_index);
-			count_dino.splice(removed_index, 1);
-			console.log(count_dino);
+			//console.log(data_i + " is found at index " + removed_index);
+			//count_dino.splice(removed_index, 1);
+			//console.log(count_dino);
 			//prize_total += species_list[i].prize;
 			//prize_remaining += species_list[i].prize;
 			updatePrize();
@@ -391,19 +450,20 @@ output_name = output_name + " (ALPHA)"
 		}
 
 		function count_add_res(i) {
-			prize_expected -= resource_list[i].cost;
+			prize_expected -= Number(resource_list[i].cost);
 			if (prize_expected < 0) {
-						alertPrize();
-					} else {
-			prize_remaining -= resource_list[i].cost;
-			//RFD's note - WHY in the everloving fuck does this even work??!
-			//MAGIC?
-			//this.parentElement.querySelector(".ark_counter").innerHTML = Number(this.parentElement.querySelector(".ark_counter").innerHTML) + resource_list[i].stack;
-			updatePrize();
-			let output_res_text = resource_list[i].name + " (" + resource_list[i].stack + ")"
-			addOutputRow(output_res_text, datatype = "res", dataindex = i);}
-		}
+				alertPrize();
+			} else {
 
+				count_resource[i] += 1;
+				prize_remaining -= Number(resource_list[i].cost);
+				updatePrize();
+				printDinoNew();
+				//let output_res_text = resource_list[i].name + " (" + resource_list[i].stack + ")"
+				//addOutputRow(output_res_text, datatype = "res", dataindex = i);
+			}
+		}
+//unused
 		function count_remove_res(i) {
 			prize_remaining += resource_list[i].cost;
 			//RFD's note - WHY in the everloving fuck does this even work??!
@@ -414,24 +474,26 @@ output_name = output_name + " (ALPHA)"
 
 		function count_add_item(i) {
 			prize_expected -= Number(item_list[i].cost);
-			if (prize_expected < 0)  {
-						alertPrize();
-					} else {
-			prize_remaining -= Number(item_list[i].cost);
-			updatePrize();
-			addOutputRow(item_list[i].name, datatype = "item", dataindex = i);}
+			if (prize_expected < 0) {
+				alertPrize();
+			} else {
+				count_item[i] += 1;
+				prize_remaining -= Math.floor(Number(item_list[i].cost));
+				updatePrize();
+				printDinoNew();
+				//addOutputRow(item_list[i].name, datatype = "item", dataindex = i);
+			}
 		}
-
+//unused
 		function count_remove_item(i) {
 			if (Number(this.parentElement.querySelector(".ark_counter").innerHTML > 0)) {
-				prize_remaining += item_list[i].cost;
+				prize_remaining += Math.floor(Number(item_list[i].cost));
 				//RFD's note - WHY in the everloving fuck does this even work??!
 				//MAGIC?
 				this.parentElement.querySelector(".ark_counter").innerHTML--;
 				updatePrize();
 			}
 		}
-
 
 		function filterSelection(classlist, category) {
 			let rows = document.getElementsByClassName(classlist + "_row");
@@ -475,9 +537,12 @@ output_name = output_name + " (ALPHA)"
 			document.getElementById("arkcalc_help").style.display = "none";
 		}
 
-		function addOutputRow(text, datatype = "none", dataindex = 0) {
-
-			let tn_output = document.createTextNode(text);
+		function addOutputRow(text, datatype = "none", dataindex = 0, count = 0, prize_1 = 0) {
+			let prize = prize_1 * count;
+			if (datatype == "res") {
+				count = count * resource_list[dataindex].stack;
+			}
+			let tn_output = document.createTextNode(text + " (" + count + "x): " + prize + " RPD");
 			let output_row = document.createElement("li");
 
 			output_row.setAttribute("data-type", datatype)
@@ -488,7 +553,7 @@ output_name = output_name + " (ALPHA)"
 			remove_button.appendChild(tn_remove_button);
 			remove_button.classList.add("ark_b_remove");
 
-			remove_button.addEventListener("click", cbChange, false);
+			remove_button.addEventListener("click", removeOutput, false);
 
 			output_row.append(tn_output, remove_button);
 			document.getElementById("ark_output_list").appendChild(output_row);
@@ -498,35 +563,28 @@ output_name = output_name + " (ALPHA)"
 
 		//to-do - make this a shared function?
 		function copyToClipboard() {
-			if (prize_remaining < 0) {
-						showPopup('ark_popup_below_0');
-					} else {
-			let outputContent = document.getElementById("ark_output_list").textContent;
-			outputContent = outputContent.replace(/remove/g, `\n`);
-			outputContent = "prize total: " + prize_total + "\nprize remaining: " + prize_remaining + "\n\n" + outputContent;
-			outputContent = "```\n" + outputContent + "```";
-			navigator.clipboard.writeText(outputContent);
-			showPopup('ark_popup_copied');
-		}}
-		/*
-		function fuckThis() {
-		console.log("this - start");
-				var checkboxes = document.getElementsByClassName('ark_b_remove');
-				Array.from(checkboxes).forEach(function (element) {
-					//                                      ^^^^^^^
-					console.log("this - loop");
-					element.addEventListener("click", cbChange, false);
-					//^^^^^^^  
-				})};
-				*/
+			if (prize_total == 0) {
+				showPopup('ark_empty_list');
+			} else if (prize_remaining < 0) {
+				showPopup('ark_popup_below_0');
+			} else {
+				let outputContent = document.getElementById("ark_output_list").textContent;
+				outputContent = outputContent.replace(/remove/g, `\n`);
+				outputContent = "prize total: " + prize_total + "\nprize remaining: " + prize_remaining + "\n\n" + outputContent;
+				outputContent = "```\n" + outputContent + "```";
+				navigator.clipboard.writeText(outputContent);
+				showPopup('ark_popup_copied');
+			}
+		}
 
-		function cbChange() {
-			let i = this.parentElement.dataset.index;
-			let datatype = this.parentElement.dataset.type
+		function removeOutput() {
+			let i = Number(this.parentElement.dataset.index);
+			let datatype = this.parentElement.dataset.type;
 
 			switch (datatype) {
 				case "dino":
 					console.log("creature");
+					count_dino_new[i] -= 1;
 					prize_total -= species_list[i].prize;
 					prize_remaining -= species_list[i].prize;
 					//alert the user if prize_remaining is below 0!
@@ -536,28 +594,44 @@ output_name = output_name + " (ALPHA)"
 					break;
 				case "res":
 					console.log("resource");
+					count_resource[i] -= 1;
 					prize_remaining += resource_list[i].cost;
 					break;
 				case "item":
 					console.log("item type");
-					prize_remaining += item_list[i].cost;
+					count_item[i] -= 1;
+					prize_remaining += Math.floor(Number(item_list[i].cost));
 					break;
 				default:
 					alert("Unknown data category: " + datatype);
+					break;
+
 			}
 
+
+
+/*
 			console.log("this - dataindex: " + this.parentElement.dataset.index);
 
+			//test!
+			let removed_index = count_dino.lastIndexOf(i);
+			console.log(i + " is found at index " + removed_index);
+			count_dino.splice(removed_index, 1);
+			console.log(count_dino);
+			//console.log("type of i: " + typeof(i));
+			//console.log(count_dino.lastIndexOf(i));
+*/
 			updatePrize();
-			this.parentElement.remove();
+			printDinoNew();
 		}
 
 		showSpecies();
 		showResources();
 		showItems();
-		filterAll('ark_species');
 		filterAll('ark_resource');
 		filterAll('ark_item');
+		filterAll('ark_species');
+		arkSort('ark_dino_name', 'ark_species_table');
 		updatePrize();
 	</script>
 

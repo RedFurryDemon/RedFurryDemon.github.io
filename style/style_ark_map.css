@@ -1,0 +1,70 @@
+body {
+  background-color: #141414;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+#mapImageTopographic {
+  width: 1000px;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 20%;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+#mapImageSvg {
+  width: 1000px;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+#mapMarkersSvg {
+  width: 1000px;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+#mapImageDrawn {
+  width: 1000px;
+  height: 1000px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0%;
+}
+
+#mapCanvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#arkmap_sidebar {
+  width: 256px;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  background-color: black;
+  padding: 1em;
+}
+
+#arkmap_sidebar label,
+#arkmap_sidebar input {
+  display: block;
+}
+
+.ark_map_linework {
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+}

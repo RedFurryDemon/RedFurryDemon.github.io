@@ -1,0 +1,99 @@
+@font-face {
+  font-family: solidMono;
+  src: url("../assets/Solid-Mono.ttf");
+}
+
+@font-face {
+  font-family: eirian;
+  src: url("../assets/eirian.regular.otf");
+}
+
+@font-face {
+  font-family: sonoVariable;
+  src: url("../assets/SonoVariable.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: firaCodeVF;
+  src: url("../assets/FiraCode-VF.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lab Mono Web";
+  src: url("../assets/labmono-regular-web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ark_kibble_row {
+  padding: 1em;
+  margin: 0.5em 0em;
+  background-color: var(--block-bg);
+}
+
+.ark_kibble_header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.ark_kibble_name {
+  flex-grow: 1;
+  margin: 0em;
+  padding-left: 0.5em;
+  align-self: stretch;
+}
+
+.ark_kibble_imprint {
+  box-shadow: 0 0 0.5em #ffb300;
+}
+
+.ark_kibble_imprint_text {
+  align-self: center;
+  background-color: #ffb300;
+  color: black;
+  border-radius: 1em;
+  padding: 0.25em 0.5em;
+}
+
+.ark_kibble_ingredients {
+  list-style-type: none;
+}
+
+.ark_kibble_meat {
+  background-color: rgba(255, 31, 53, 0.15);
+}
+
+.ark_kibble_other {
+  background-color: rgba(20, 196, 255, 0.15);
+}
+
+.ark_kibble_plant {
+  background-color: rgba(102, 255, 0, 0.15);
+}
+
+.ark_kibble_fiber {
+  background-color: rgba(214, 139, 0, 0.15);
+}
+
+.ark_kibble_taming {
+  font-size: 90%;
+  list-style-type: none;
+}
+
+.ark_kibble_taming li {
+  padding: 0.5em;
+}
+
+.kibble_ingr_count {
+  width: 4em;
+  display: inline-block;
+  text-align: right;
+  padding: 0.5em;
+  color: var(--body-txt-brighter);
+  background-color: var(--block-bg);
+  margin-right: 0.75em;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="style/style__main.css">
+	<link rel="stylesheet" type="text/css" href="style/style_ark_kibble.css">
+
+	<title>RFD's Scratchpad</title>
+	<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+	<link id="theme_css" rel="stylesheet" type="text/css" href="style/theme_dark.css">
+
+	<script src="scripts/ark_data_kibble.js"></script>
+
+	<!--no defer!-->
+	<script src="scripts/shared.js"></script>
+</head>
+
+<body>
+
+	<div id="header_id"></div>
+
+	<div id="content_id">
+		<h1>kibble cheat sheet</h1>
+		<div class="textbg">
+			<p>Reference for kibble use and recipes.</p>
+			<p>Kibble should never be stored or transported in a tame's inventory; they are likely to eat it. The spoil time is long enough that it's safe to carry it in your own inventory.</p>
+			<p>Typically, imprint kibble is reusable. To ensure the tame doesn't eat it, put a small amount of regular food in their inventory <i>before</i> using the kibble.</p>
+			<div id="ark_kibble_table">
+			</div>
+		</div>
+	</div>
+
+	<div id="footer_id"></div>
+
+	<script>
+
+		function showKibble() {
+			for (let i = 0; i < kibble_list.length; i++) {
+
+				// general
+
+				let ark_kibble_row = document.createElement("div");
+				ark_kibble_row.classList.add("ark_kibble_row");
+
+				//header
+
+				let tn_kibble_name = document.createTextNode(kibble_list[i].name);
+				let ark_kibble_name = document.createElement("h3");
+				let ark_kibble_header = document.createElement("div");
+				let ark_kibble_ingredients = document.createElement("ul");
+				ark_kibble_ingredients.classList.add("ark_kibble_ingredients");
+
+
+				ark_kibble_name.classList.add("ark_kibble_name");
+				ark_kibble_name.appendChild(tn_kibble_name);
+
+				ark_kibble_header.appendChild(ark_kibble_name);
+				ark_kibble_header.classList.add("ark_kibble_header");
+
+				if (kibble_list[i].imprint == true) {
+					let tn_kibble_imprint = document.createTextNode("imprint");
+					let ark_kibble_imprint = document.createElement("span");
+					ark_kibble_imprint.classList.add("ark_kibble_imprint_text");
+					ark_kibble_imprint.appendChild(tn_kibble_imprint);
+					ark_kibble_row.classList.add("ark_kibble_imprint");
+					ark_kibble_header.appendChild(ark_kibble_imprint);
+				};
+
+				//ingredients
+
+				if (kibble_list[i].meat != []) {
+					for (let j = 0; j < kibble_list[i].meat.length; j++) {
+						let tn_meat = document.createTextNode(kibble_list[i].meat[j][0]);
+						let ark_kibble_meat = document.createElement("li");
+						ark_kibble_meat.classList.add("ark_kibble_meat");
+						let tn_count = document.createTextNode(kibble_list[i].meat[j][1]);
+						let ark_kibble_meat_count = document.createElement("span");
+						ark_kibble_meat_count.appendChild(tn_count);
+						ark_kibble_meat_count.classList.add("kibble_ingr_count");
+						ark_kibble_meat.append(ark_kibble_meat_count, tn_meat);
+						ark_kibble_ingredients.appendChild(ark_kibble_meat);
+					}
+				};
+				if (kibble_list[i].other != []) {
+					for (let k = 0; k < kibble_list[i].other.length; k++) {
+						let tn_other = document.createTextNode(kibble_list[i].other[k][0]);
+						let ark_kibble_other = document.createElement("li");
+						ark_kibble_other.classList.add("ark_kibble_other");
+						let tn_count = document.createTextNode(kibble_list[i].other[k][1]);
+						let ark_kibble_other_count = document.createElement("span");
+						ark_kibble_other_count.appendChild(tn_count);
+						ark_kibble_other_count.classList.add("kibble_ingr_count");
+						ark_kibble_other.append(ark_kibble_other_count, tn_other);
+						ark_kibble_ingredients.appendChild(ark_kibble_other);
+					}
+				};
+				//plants
+				for (let l = 0; l < kibble_list[i].plants.length; l++) {
+					let tn_plant = document.createTextNode(kibble_list[i].plants[l][0]);
+					let ark_kibble_plant = document.createElement("li");
+					ark_kibble_plant.classList.add("ark_kibble_plant");
+					let tn_count = document.createTextNode(kibble_list[i].plants[l][1]);
+					let ark_kibble_plant_count = document.createElement("span");
+					ark_kibble_plant_count.appendChild(tn_count);
+					ark_kibble_plant_count.classList.add("kibble_ingr_count");
+					ark_kibble_plant.append(ark_kibble_plant_count, tn_plant);
+					ark_kibble_ingredients.appendChild(ark_kibble_plant);
+				}
+
+
+				//fiber
+				let tn_kibble_fiber = document.createTextNode("fiber");
+				let ark_kibble_fiber = document.createElement("li");
+				ark_kibble_fiber.classList.add("ark_kibble_fiber");
+				let tn_fiber_count = document.createTextNode(kibble_list[i].fiber);
+				let ark_kibble_fiber_count = document.createElement("span");
+				ark_kibble_fiber_count.appendChild(tn_fiber_count);
+				ark_kibble_fiber_count.classList.add("kibble_ingr_count");
+				ark_kibble_fiber.append(ark_kibble_fiber_count, tn_kibble_fiber);
+				ark_kibble_ingredients.append(ark_kibble_fiber);
+
+				ark_kibble_row.append(ark_kibble_header, ark_kibble_ingredients);
+
+				//taming
+
+				if (kibble_list[i].taming != []) {
+
+					let ark_kibble_taming = document.createElement("ul");
+					ark_kibble_taming.classList.add("ark_kibble_taming");
+					let tn_tame_title = document.createTextNode("Used to tame:");
+					ark_kibble_taming.appendChild(tn_tame_title);
+
+					for (let k = 0; k < kibble_list[i].taming.length; k++) {
+						let tn_tame = document.createTextNode(kibble_list[i].taming[k]);
+						let ark_kibble_tame = document.createElement("li");
+						ark_kibble_tame.appendChild(tn_tame);
+						ark_kibble_taming.appendChild(ark_kibble_tame);
+					}
+					ark_kibble_row.appendChild(ark_kibble_taming);
+				}
+
+				document.getElementById("ark_kibble_table").append(ark_kibble_row);
+			}
+
+		}
+
+		showKibble();
+	</script>
+
+</body>
+
+</html>
