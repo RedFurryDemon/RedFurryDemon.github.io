@@ -31,7 +31,9 @@
 .ark_kibble_ingredients
 	list-style-type: none
 
-//.ark_kibble_ingredients li
+.ark_kibble_ingredients li
+	display: flex
+	flex-direction: row
 //	padding: 0.5em
 
 .ark_kibble_meat
@@ -54,10 +56,18 @@
 	padding: 0.5em
 
 .kibble_ingr_count
-	width: 4em
+	width: 3em
 	display: inline-block
 	text-align: right
 	padding: 0.5em
 	color: var(--body-txt-brighter)
 	background-color: var(--block-bg)
 	margin-right: 0.75em
+
+.kibble_ingr_name
+	padding: 0.5em 0.5em 0.5em 0em
+
+
+@media only screen and (max-width: $rwd_phone)
+	.ark_kibble_ingredients
+		padding-left: 0em

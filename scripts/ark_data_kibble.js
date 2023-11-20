@@ -1,4 +1,5 @@
-const prime_any = "cooked prime meat, cooked prime fish meat, or prime meat jerky";
+//const prime_any = "cooked prime meat, cooked prime fish meat, or prime meat jerky";
+const prime_any = "any cooked or jerkied prime meat";
 
 const kibble_list = [
 	kibble_allosaurus = {

@@ -20,7 +20,15 @@ const rule_list = [
 	],
 	[
 		[
-			"A sleeping megalosaurus owned by another player should never be approached. Any of these dinosaurs must be kept in a clearly marked area."
+			"Sharing the server password is not allowed without the explicit consent of the admins."
+		],
+		[
+			"Likewise, sharing an invite to the discord server is not allowed."
+		]
+	],
+	[
+		[
+			"A sleeping megalosaurus owned by another player should never be approached. Any of these dinosaurs must be kept in a clearly marked area, preferably within an enclosure."
 		],
 		[
 			"A megalosaurus woken form their slumber aggroes any and all allied tames nearby."

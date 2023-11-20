@@ -38,6 +38,9 @@
 
 	<script>
 
+
+
+
 		function showKibble() {
 			for (let i = 0; i < kibble_list.length; i++) {
 
@@ -74,7 +77,7 @@
 
 				if (kibble_list[i].meat != []) {
 					for (let j = 0; j < kibble_list[i].meat.length; j++) {
-						let tn_meat = document.createTextNode(kibble_list[i].meat[j][0]);
+						/*let tn_meat = document.createTextNode(kibble_list[i].meat[j][0]);
 						let ark_kibble_meat = document.createElement("li");
 						ark_kibble_meat.classList.add("ark_kibble_meat");
 						let tn_count = document.createTextNode(kibble_list[i].meat[j][1]);
@@ -82,12 +85,13 @@
 						ark_kibble_meat_count.appendChild(tn_count);
 						ark_kibble_meat_count.classList.add("kibble_ingr_count");
 						ark_kibble_meat.append(ark_kibble_meat_count, tn_meat);
-						ark_kibble_ingredients.appendChild(ark_kibble_meat);
+						ark_kibble_ingredients.appendChild(ark_kibble_meat);*/
+						addIngredient("ark_kibble_meat", kibble_list[i].meat[j][1], kibble_list[i].meat[j][0], ark_kibble_ingredients);
 					}
 				};
 				if (kibble_list[i].other != []) {
 					for (let k = 0; k < kibble_list[i].other.length; k++) {
-						let tn_other = document.createTextNode(kibble_list[i].other[k][0]);
+						/*let tn_other = document.createTextNode(kibble_list[i].other[k][0]);
 						let ark_kibble_other = document.createElement("li");
 						ark_kibble_other.classList.add("ark_kibble_other");
 						let tn_count = document.createTextNode(kibble_list[i].other[k][1]);
@@ -95,12 +99,13 @@
 						ark_kibble_other_count.appendChild(tn_count);
 						ark_kibble_other_count.classList.add("kibble_ingr_count");
 						ark_kibble_other.append(ark_kibble_other_count, tn_other);
-						ark_kibble_ingredients.appendChild(ark_kibble_other);
+						ark_kibble_ingredients.appendChild(ark_kibble_other);*/
+						addIngredient("ark_kibble_other", kibble_list[i].other[k][1], kibble_list[i].other[k][0], ark_kibble_ingredients);
 					}
 				};
 				//plants
 				for (let l = 0; l < kibble_list[i].plants.length; l++) {
-					let tn_plant = document.createTextNode(kibble_list[i].plants[l][0]);
+					/*let tn_plant = document.createTextNode(kibble_list[i].plants[l][0]);
 					let ark_kibble_plant = document.createElement("li");
 					ark_kibble_plant.classList.add("ark_kibble_plant");
 					let tn_count = document.createTextNode(kibble_list[i].plants[l][1]);
@@ -108,12 +113,13 @@
 					ark_kibble_plant_count.appendChild(tn_count);
 					ark_kibble_plant_count.classList.add("kibble_ingr_count");
 					ark_kibble_plant.append(ark_kibble_plant_count, tn_plant);
-					ark_kibble_ingredients.appendChild(ark_kibble_plant);
+					ark_kibble_ingredients.appendChild(ark_kibble_plant);*/
+					addIngredient("ark_kibble_plant", kibble_list[i].plants[l][1], kibble_list[i].plants[l][0], ark_kibble_ingredients);
 				}
 
 
 				//fiber
-				let tn_kibble_fiber = document.createTextNode("fiber");
+				/*let tn_kibble_fiber = document.createTextNode("fiber");
 				let ark_kibble_fiber = document.createElement("li");
 				ark_kibble_fiber.classList.add("ark_kibble_fiber");
 				let tn_fiber_count = document.createTextNode(kibble_list[i].fiber);
@@ -121,7 +127,9 @@
 				ark_kibble_fiber_count.appendChild(tn_fiber_count);
 				ark_kibble_fiber_count.classList.add("kibble_ingr_count");
 				ark_kibble_fiber.append(ark_kibble_fiber_count, tn_kibble_fiber);
-				ark_kibble_ingredients.append(ark_kibble_fiber);
+				ark_kibble_ingredients.append(ark_kibble_fiber);*/
+
+				addIngredient("ark_kibble_fiber", kibble_list[i].fiber, "fiber", ark_kibble_ingredients);
 
 				ark_kibble_row.append(ark_kibble_header, ark_kibble_ingredients);
 
@@ -147,6 +155,25 @@
 			}
 
 		}
+
+function addIngredient(kibble_class, text_count, text_name, ark_kibble_ingredients) {
+let ark_kibble_cont = document.createElement("li");
+						ark_kibble_cont.classList.add(kibble_class);
+
+let tn_count = document.createTextNode(text_count);
+						let ark_kibble_count = document.createElement("div");
+						ark_kibble_count.appendChild(tn_count);
+						ark_kibble_count.classList.add("kibble_ingr_count");
+
+
+let tn_name = document.createTextNode(text_name);
+let ark_kibble_name = document.createElement("div");
+						ark_kibble_name.appendChild(tn_name);
+						ark_kibble_name.classList.add("kibble_ingr_name");
+
+						ark_kibble_cont.append(ark_kibble_count, ark_kibble_name);
+						ark_kibble_ingredients.appendChild(ark_kibble_cont);
+}
 
 		showKibble();
 	</script>

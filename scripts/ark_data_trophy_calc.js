@@ -372,6 +372,12 @@ const resource_list = [
 		cost: RESOURCE_COST_B,
 		stack: STACK_TIER_VERY_COMMON
 	},
+	res_ingots = {
+		name: "metal ingots",
+		category: ["basic", "spawnable"],
+		cost: RESOURCE_COST_B,
+		stack: STACK_TIER_COMMON
+	},
 	res_pearls = {
 		name: "silica pearls",
 		category: ["basic", "spawnable"],
@@ -446,6 +452,12 @@ const resource_list = [
 	},
 	res_sap = {
 		name: "sap",
+		category: ["basic", "spawnable"],
+		cost: RESOURCE_COST_C,
+		stack: STACK_TIER_UNCOMMON
+	},
+	res_black_pearls = {
+		name: "black pearls",
 		category: ["basic", "spawnable"],
 		cost: RESOURCE_COST_C,
 		stack: STACK_TIER_UNCOMMON
@@ -566,8 +578,20 @@ const item_list = [
 	item_longneck = {
 		name: "longneck rifle",
 		category: ["weapon"],
-		quality: 280,
-		cost: 280 * WEAPON_MULT
+		quality: 1131,
+		cost: 1131 * WEAPON_MULT
+	},
+	item_shotgun = {
+		name: "shotgun",
+		category: ["weapon"],
+		quality: 353,
+		cost: 353 * WEAPON_MULT
+	},
+	item_simple_pistol = {
+		name: "simple pistol",
+		category: ["weapon"],
+		quality: 532,
+		cost: 532 * WEAPON_MULT
 	},
 	item_pickaxe = {
 		name: "metal pick",
@@ -617,25 +641,25 @@ const item_list = [
 		quality: 185,
 		cost: 185 * ARMOR_MULT
 	},
-item_hide_shirt = {
+	item_hide_shirt = {
 		name: "hide shirt",
 		category: ["armor"],
 		quality: 296,
 		cost: 296 * ARMOR_MULT
 	},
-item_hide_gloves = {
+	item_hide_gloves = {
 		name: "hide gloves",
 		category: ["armor"],
 		quality: 215,
 		cost: 215 * ARMOR_MULT
 	},
-item_hide_pants = {
+	item_hide_pants = {
 		name: "hide pants",
 		category: ["armor"],
 		quality: 256,
 		cost: 256 * ARMOR_MULT
 	},
-item_hide_boots = {
+	item_hide_boots = {
 		name: "hide boots",
 		category: ["armor"],
 		quality: 239,
@@ -647,6 +671,30 @@ item_hide_boots = {
 		quality: 438,
 		cost: 438 * ARMOR_MULT
 	},
+	item_chitin_gauntlets = {
+		name: "chitin gauntlets",
+		category: ["armor"],
+		quality: 231,
+		cost: 231 * ARMOR_MULT
+	},
+	item_chitin_chestpiece = {
+		name: "chitin chestpiece",
+		category: ["armor"],
+		quality: 174,
+		cost: 174 * ARMOR_MULT
+	},
+	item_chitin_leggings = {
+		name: "chitin leggings",
+		category: ["armor"],
+		quality: 430,
+		cost: 430 * ARMOR_MULT
+	},
+	item_chitin_boots = {
+		name: "chitin boots",
+		category: ["armor"],
+		quality: 519,
+		cost: 519 * ARMOR_MULT
+	},
 	/*item_ghillie_mask = {
 		name: "ghillie mask",
 		category: ["armor"],
@@ -654,10 +702,16 @@ item_hide_boots = {
 		cost: 8 * ARMOR_SPECIAL_MULT
 	},*/
 	item_fur_cap = {
-		name: "chitin helmet",
+		name: "fur cap",
 		category: ["armor"],
 		quality: 412,
 		cost: 412 * ARMOR_MULT
+	},
+	item_fur_leggings = {
+		name: "fur leggings",
+		category: ["armor"],
+		quality: 489,
+		cost: 489 * ARMOR_MULT
 	},
 	item_flak_helmet = {
 		name: "flak helmet",
@@ -665,41 +719,53 @@ item_hide_boots = {
 		quality: 1360,
 		cost: 1360 * ARMOR_MULT
 	},
-item_flak_chestpiece = {
+	item_flak_gauntlets = {
+		name: "flak gauntlets",
+		category: ["armor"],
+		quality: 1161,
+		cost: 1161 * ARMOR_MULT
+	},
+	item_flak_chestpiece = {
 		name: "flak chestpiece",
 		category: ["armor"],
 		quality: 1058,
 		cost: 1058 * ARMOR_MULT
 	},
-item_flak_leggings = {
+	item_flak_leggings = {
 		name: "flak leggings",
 		category: ["armor"],
 		quality: 1310,
 		cost: 1310 * ARMOR_MULT
 	},
+	item_flak_boots = {
+		name: "flak boots",
+		category: ["armor"],
+		quality: 1187,
+		cost: 1187 * ARMOR_MULT
+	},
 	item_scuba_mask = {
 		name: "scuba mask",
 		category: ["armor"],
 		quality: 0,
-		cost: 5 * ARMOR_SPECIAL_MULT
+		cost: 5
 	},
-item_scuba_tank = {
+	item_scuba_tank = {
 		name: "scuba tank",
 		category: ["armor"],
 		quality: 0,
-		cost: 5 * ARMOR_SPECIAL_MULT
+		cost: 15
 	},
-item_scuba_leggings = {
+	item_scuba_leggings = {
 		name: "scuba leggings",
 		category: ["armor"],
 		quality: 5,
-		cost: 5 * ARMOR_SPECIAL_MULT
+		cost: 10
 	},
-item_scuba_flippers = {
+	item_scuba_flippers = {
 		name: "scuba flippers",
 		category: ["armor"],
 		quality: 0,
-		cost: 5 * ARMOR_SPECIAL_MULT
+		cost: 5
 	},
 	item_wooden_shield = {
 		name: "wooden shield",
@@ -722,8 +788,14 @@ item_scuba_flippers = {
 	saddle_argentavis = {
 		name: "saddle: argentavis",
 		category: ["saddle"],
-		quality: 25,
-		cost: 25 * SADDLE_MULT
+		quality: 116,
+		cost: 116 * SADDLE_MULT
+	},
+	saddle_brontosaurus = {
+		name: "saddle: brontosaurus",
+		category: ["saddle"],
+		quality: 309,
+		cost: 309 * SADDLE_MULT
 	},
 	saddle_doedicurus = {
 		name: "saddle: doedicurus",
@@ -779,17 +851,29 @@ item_scuba_flippers = {
 		quality: 25,
 		cost: 25 * SADDLE_MULT
 	},
+	saddle_pulmonoscorpius = {
+		name: "saddle: pulmonoscorpius",
+		category: ["saddle"],
+		quality: 115,
+		cost: 115 * SADDLE_MULT
+	},
 	saddle_raptor = {
 		name: "saddle: raptor",
 		category: ["saddle"],
-		quality: 255,
-		cost: 255 * SADDLE_MULT
+		quality: 283,
+		cost: 283 * SADDLE_MULT
 	},
 	saddle_rex = {
 		name: "saddle: tyrannosaurus",
 		category: ["saddle"],
 		quality: 25,
 		cost: 25 * SADDLE_MULT
+	},
+	saddle_sabertooth = {
+		name: "saddle: sabertooth",
+		category: ["saddle"],
+		quality: 84,
+		cost: 84 * SADDLE_MULT
 	},
 	saddle_spino = {
 		name: "saddle: spinosaurus",

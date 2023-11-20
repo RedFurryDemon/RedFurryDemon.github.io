@@ -1,50 +1,38 @@
-body
-	background-color: #141414
-	color: rgba(255, 255, 255, 0.76)
+#mapCont
+	display: flex
+	flex-direction: row
+	justify-content: center
+	width: 100%
+
+#mapImageCont
+	position: relative
+	width: 1000px
+	height: 1000px
 
 #mapImageTopographic
 	width: 1000px
 	height: 1000px
 	position: absolute
-	top: 0px
-	left: 0px
 	opacity: 20%
-	margin:
-		top: -1px
-		left: -1px
 
 #mapImageSvg
 	width: 1000px
 	height: 1000px
 	position: absolute
-	top: 0px
-	left: 0px
-	margin:
-		top: -1px
-		left: -1px
 
 #mapMarkersSvg
 	width: 1000px
 	height: 1000px
 	position: absolute
-	top: 0px
-	left: 0px
-	margin:
-		top: -1px
-		left: -1px
 
 #mapImageDrawn
 	width: 1000px
 	height: 1000px
 	position: absolute
-	top: 0px
-	left: 0px
-	opacity: 0%
+	opacity: 20%
 
 #mapCanvas
 	position: absolute
-	top: 0px
-	left: 0px
 
 #arkmap_sidebar
 	width: 256px
@@ -53,14 +41,24 @@ body
 	right: 0
 	background-color: black
 	padding: 1em
+	display: none
 
 #arkmap_sidebar label,
 #arkmap_sidebar input
 	display: block
-
 
 //new map - svg version
 .ark_map_linework
 	fill: none
 	stroke: white
 	stroke-width: 1
+
+
+#mapInfo
+	position: sticky
+	top: 0em
+	padding: 1rem 6rem
+	margin: 0rem 10rem
+	//border: 1px solid white
+	background-color: hsla(0, 0%, 0%, 0.7)
+	z-index: 1
