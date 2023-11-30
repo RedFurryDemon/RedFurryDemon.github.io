@@ -53,7 +53,7 @@ const kibble_list = [
 		taming: ["sabertooth"],
 		meat: [["cooked meat jerky", 1]],
 		other: [],
-		plants: [["savoroot", 1], ["mejoberry", 2]],
+		plants: [["rockarrot", 1], ["mejoberry", 2]],
 		fiber: 3
 	},
 	kibble_carbonemys = {
@@ -233,7 +233,7 @@ const kibble_list = [
 		taming: ["raptor"],
 		meat: [["cooked meat", 1]],
 		other: [],
-		plants: [["longrass", 1], ["mejoberry", 2]],
+		plants: [["rockarrot", 2], ["mejoberry", 2]],
 		fiber: 3
 	},
 	kibble_pelagornis = {
