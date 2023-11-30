@@ -68,7 +68,7 @@ const kibble_list = [
 	kibble_carno = {
 		name: "kibble: carnotaurus",
 		imprint: false,
-		taming: ["dire_bear", "direwolf", "triceratops"],
+		taming: ["dire bear", "direwolf", "triceratops"],
 		meat: [["cooked meat", 1]],
 		other: [],
 		plants: [["savoroot", 1], ["mejoberry", 2]],
@@ -77,7 +77,7 @@ const kibble_list = [
 	kibble_compy = {
 		name: "kibble: compsognathus",
 		imprint: false,
-		taming: ["iguanodon"],
+		taming: ["iguanodon", "pelagornis"],
 		meat: [["cooked fish meat", 1]],
 		other: [],
 		plants: [["citronal", 1], ["mejoberry", 2]],
@@ -110,9 +110,9 @@ const kibble_list = [
 		plants: [["longrass", 1], ["mejoberry", 2]],
 		fiber: 3
 	},
-	kibble_diplo = {
-		name: "kibble: dimetrodon",
-		imprint: true,
+	kibble_diplodocus = {
+		name: "kibble: diplodocus",
+		imprint: false,
 		taming: ["allosaurus"],
 		meat: [],
 		other: [["rare flower", 1]],
@@ -248,7 +248,7 @@ const kibble_list = [
 	kibble_pteranodon = {
 		name: "kibble: pteranodon",
 		imprint: true,
-		taming: ["raptor"],
+		taming: ["carbonemys"],
 		meat: [["cooked meat", 1]],
 		other: [],
 		plants: [["rockarrot", 1], ["mejoberry", 2]],
@@ -347,7 +347,7 @@ const kibble_list = [
 	kibble_titanoboa = {
 		name: "kibble: titanboa",
 		imprint: false,
-		taming: ["giganotosaurus", "dunkleosteus"],
+		taming: ["gigantopithecus", "dunkleosteus"],
 		meat: [["cooked meat jerky", 1]],
 		other: [],
 		plants: [["longrass", 1], ["mejoberry", 2]],

@@ -29,6 +29,8 @@
 			<p>Reference for kibble use and recipes.</p>
 			<p>Kibble should never be stored or transported in a tame's inventory; they are likely to eat it. The spoil time is long enough that it's safe to carry it in your own inventory.</p>
 			<p>Typically, imprint kibble is reusable. To ensure the tame doesn't eat it, put a small amount of regular food in their inventory <i>before</i> using the kibble.</p>
+			<input type="text" id="ark_kibbleType_search" onkeyup="searchByKibble()" placeholder="Search by kibble type..." title="type in the kibble you're looking for">
+			<input type="text" id="ark_kibbleSpecies_search" onkeyup="searchBySpecies()" placeholder="Search by tamed creature..." title="type in the species you want to tame">
 			<div id="ark_kibble_table">
 			</div>
 		</div>
@@ -174,6 +176,51 @@ let ark_kibble_name = document.createElement("div");
 						ark_kibble_cont.append(ark_kibble_count, ark_kibble_name);
 						ark_kibble_ingredients.appendChild(ark_kibble_cont);
 }
+
+function searchByKibble() {
+	document.getElementById('ark_kibbleSpecies_search').value = '';
+	let input = document.getElementById("ark_kibbleType_search");
+	let input_text = input.value.toUpperCase();
+	//ASK - should this be constant? Element.children is read-only but updates live
+    let kibble_boxes = document.getElementById("ark_kibble_table").children;
+    for (i = 0; i < kibble_boxes.length; i++) {
+        let kibble_box_title = kibble_boxes[i].getElementsByClassName("ark_kibble_name")[0];
+        //txtValue = a.textContent || a.innerText;
+        if (kibble_box_title.textContent.toUpperCase().indexOf(input_text) > -1) {
+            kibble_boxes[i].style.display = "";
+        } else {
+            kibble_boxes[i].style.display = "none";
+        }
+    }
+}
+
+function searchBySpecies() {
+	document.getElementById('ark_kibbleType_search').value = '';
+	let input = document.getElementById("ark_kibbleSpecies_search");
+	let input_text = input.value.toUpperCase();
+	//ASK - should this be constant? Element.children is read-only but updates live
+    let kibble_boxes = document.getElementById("ark_kibble_table").children;
+	let found_substring = false;
+    for (i = 0; i < kibble_boxes.length; i++) {
+		found_substring = false;
+        let kibble_box_tames = kibble_boxes[i].getElementsByClassName("ark_kibble_taming")[0];
+
+
+
+let li = kibble_box_tames.getElementsByTagName("li");
+    for (let j = 0; j < li.length; j++) {
+        if (li[j].textContent.toUpperCase().indexOf(input_text) > -1) {
+            found_substring = true;
+        }
+    }
+        if (found_substring == true) {
+            kibble_boxes[i].style.display = "";
+        } else {
+            kibble_boxes[i].style.display = "none";
+        }
+    }
+}
+
 
 		showKibble();
 	</script>

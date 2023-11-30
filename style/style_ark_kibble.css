@@ -107,6 +107,14 @@
   padding: 0.5em 0.5em 0.5em 0em;
 }
 
+#ark_kibbleType_search,
+#ark_kibbleSpecies_search {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 0.75rem;
+  font-size: 100%;
+}
+
 @media only screen and (max-width: 600px) {
   .ark_kibble_ingredients {
     padding-left: 0em;
